@@ -1,5 +1,14 @@
 package com.example.campusdirecter.model;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
 public class Module {
     private String code;
     private Course[] courses;
@@ -34,5 +43,13 @@ public class Module {
 
     public int getCredits() {
         return credits;
+    }
+
+    public List<Examination> getExaminations() {
+        List<Examination> exams = new ArrayList<>();
+        for (Course c : courses) {
+            exams.addAll(c.getExaminations());
+        }
+        return exams;
     }
 }
