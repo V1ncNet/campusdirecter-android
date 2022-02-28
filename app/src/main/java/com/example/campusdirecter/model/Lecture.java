@@ -6,7 +6,7 @@ public class Lecture {
     private Lecturer lecturer;
     private Location location;
 
-    public Lecture(String id, String summary, Lecture, Lecturer lecturer, Location location) {
+    public Lecture(String id, String summary, Lecturer lecturer, Location location) {
         this.id = id;
         this.summary = summary;
         this.lecturer = lecturer;
