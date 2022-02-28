@@ -6,13 +6,13 @@ public class Timetable {
     private String id;
     private String summary;
     private Student owner;
-    private Event[] events;
+    private Lecture[] lectures;
 
-    public Timetable(String id, String summary, Student student, Event[] events) {
+    public Timetable(String id, String summary, Student student, Lecture[] lectures) {
         this.id = id;
         this.summary = summary;
         this.owner = student;
-        this.events = events;
+        this.lectures = lectures;
     }
 
     public String getId() {
@@ -27,7 +27,7 @@ public class Timetable {
         return owner;
     }
 
-    public Event[] getEvents() {
-        return events;
+    public Lecture[] getEvents() {
+        return lectures;
     }
 }

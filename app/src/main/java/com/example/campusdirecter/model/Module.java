@@ -28,10 +28,6 @@ public class Module {
         return courses;
     }
 
-    public Course getCourseByIndex(int i) {
-        return courses[i];
-    }
-
     public Course getCourse() {
         return course;
     }
