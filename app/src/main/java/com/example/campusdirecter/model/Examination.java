@@ -3,12 +3,12 @@ package com.example.campusdirecter.model;
 public class Examination {
     private String code;
     private String name;
-    private String course;
+    private Course course;
     private Interval interval;
     private Location location;
     private Lecturer supervision;
 
-    public Examination(String code, String name, String course, Interval interval, Location location, Lecturer supervision) {
+    public Examination(String code, String name, Course course, Interval interval, Location location, Lecturer supervision) {
         this.code = code;
         this.name = name;
         this.course = course;
@@ -25,7 +25,7 @@ public class Examination {
         return name;
     }
 
-    public String getCourse() {
+    public Course getCourse() {
         return course;
     }
 
