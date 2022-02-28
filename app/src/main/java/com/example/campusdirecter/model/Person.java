@@ -2,9 +2,9 @@ package com.example.campusdirecter.model;
 
 public class Person {
     private String id;
-    private String name;
+    private Name name;
 
-    public Person(String id, String name) {
+    public Person(String id, Name name) {
         this.id = id;
         this.name = name;
     }
@@ -13,7 +13,7 @@ public class Person {
         return id;
     }
 
-    public String getName() {
+    public Name getName() {
         return name;
     }
 }
