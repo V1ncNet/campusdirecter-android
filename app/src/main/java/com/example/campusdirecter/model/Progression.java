@@ -3,12 +3,12 @@ package com.example.campusdirecter.model;
 public class Progression {
     private Student student;
     private int semester;
-    private Try[] tries;
+    private Attempt[] attempts;
 
-    public Progression(Student student, int semester, Try[] tries) {
+    public Progression(Student student, int semester, Attempt[] attempts) {
         this.student = student;
         this.semester = semester;
-        this.tries = tries;
+        this.attempts = attempts;
     }
 
     public Student getStudent() {
@@ -19,24 +19,24 @@ public class Progression {
         return semester;
     }
 
-    public Try[] getTries() {
-        return tries;
+    public Attempt[] getAttempts() {
+        return attempts;
     }
 
     // checks if an examination was attempted and the grade is better than 4.0
     public boolean isPassed(Examination examination) {
-        boolean res = false;
-        for (Try t : tries) {
-            if (t.getExamination().getCode() == examination.getCode() && t.getGrade() <= 4.0)
-                res = true;
+        for (Attempt t : attempts) {
+            if (t.getExamination().getCode().equals(examination.getCode()) && t.getGrade() <= 4.0) {
+                return true;
+            }
         }
-        return res;
+        return false;
     }
 
     // accumulates current credits
     public int sumCredits() {
         int res = 0;
-        for (Try t : tries) {
+        for (Attempt t : attempts) {
             res += t.getExamination().getCourse().getModule().getCredits();
         }
         return res;

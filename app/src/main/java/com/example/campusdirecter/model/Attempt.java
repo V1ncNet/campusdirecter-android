@@ -1,14 +1,14 @@
 package com.example.campusdirecter.model;
 
-public class Try {
+public class Attempt {
     private Examination examination;
     private int grade;
-    private int attempt;
+    private int counter;
 
-    public Try(Examination examination, int grade, int attempt) {
+    public Attempt(Examination examination, int grade, int counter) {
         this.examination = examination;
         this.grade = grade;
-        this.attempt = attempt;
+        this.counter = counter;
     }
 
     public Examination getExamination() {
@@ -19,7 +19,7 @@ public class Try {
         return grade;
     }
 
-    public int getAttempt() {
-        return attempt;
+    public int getCounter() {
+        return counter;
     }
 }
