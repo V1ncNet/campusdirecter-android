@@ -1,22 +1,17 @@
 package com.example.campusdirecter.model;
 
 public class Lecture {
-    private String id;
     private String summary;
     private Lecturer lecturer;
     private Location location;
+    private Interval interval;
 
-    public Lecture(String id, String summary, Lecturer lecturer, Location location) {
-        this.id = id;
+    public Lecture(String summary, Lecturer lecturer, Location location, Interval interval) {
         this.summary = summary;
         this.lecturer = lecturer;
         this.location = location;
+        this.interval = interval;
     }
-
-    public String getId() {
-        return id;
-    }
-
     public String getSummary() {
         return summary;
     }
@@ -27,5 +22,9 @@ public class Lecture {
 
     public Location getLocation() {
         return location;
+    }
+
+    public Interval getInterval() {
+        return interval;
     }
 }
