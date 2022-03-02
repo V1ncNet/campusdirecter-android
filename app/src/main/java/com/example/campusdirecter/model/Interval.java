@@ -1,23 +1,27 @@
 package com.example.campusdirecter.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 public class Interval {
-    private Date start;
+    private LocalDateTime start;
     // duration in minutes
-    private int duration;
+    private long duration;
 
-    public Interval(Date start, int duration) {
+    public Interval(LocalDateTime start, long duration) {
         this.start = start;
         this.duration = duration;
     }
 
-    public Date getStart() {
+    public LocalDateTime getStart() {
         return start;
     }
 
-
-    public int getDuration() {
+    public long getDuration() {
         return duration;
+    }
+
+    public LocalDateTime getEnd() {
+        return start.plus(duration, ChronoUnit.MINUTES);
     }
 }
