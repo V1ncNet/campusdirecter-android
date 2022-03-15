@@ -1,7 +1,8 @@
 package com.example.campusdirecter.model;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Module {
     private String code;
@@ -40,10 +41,9 @@ public class Module {
     }
 
     public List<Examination> getExaminations() {
-        List<Examination> exams = new ArrayList<>();
-        for (Course c : courses) {
-            exams.addAll(c.getExaminations());
-        }
-        return exams;
+        return Arrays.stream(courses)
+                .map(Course::getExaminations)
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
     }
 }
