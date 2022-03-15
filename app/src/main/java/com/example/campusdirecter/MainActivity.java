@@ -2,6 +2,7 @@ package com.example.campusdirecter;
 
 import android.os.Bundle;
 
+import com.example.campusdirecter.api.RequestAction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,10 +16,13 @@ import com.example.campusdirecter.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    RequestAction requestAction = new RequestAction(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestAction.getStudent();
+        requestAction.getTimetable();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
