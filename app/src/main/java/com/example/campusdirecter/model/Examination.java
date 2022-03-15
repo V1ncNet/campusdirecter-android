@@ -1,5 +1,7 @@
 package com.example.campusdirecter.model;
 
+import java.util.Objects;
+
 public class Examination {
     private String code;
     private String name;
@@ -39,5 +41,18 @@ public class Examination {
 
     public Lecturer getSupervision() {
         return supervision;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Examination that = (Examination) o;
+        return code.equals(that.code);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code);
     }
 }

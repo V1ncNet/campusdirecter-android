@@ -1,5 +1,7 @@
 package com.example.campusdirecter.model;
 
+import java.util.Objects;
+
 public class Progression {
     private Student student;
     private int semester;
@@ -26,7 +28,7 @@ public class Progression {
     // checks if an examination was attempted and the grade is better than 4.0
     public boolean isPassed(Examination examination) {
         for (Attempt t : attempts) {
-            if (t.getExamination().getCode().equals(examination.getCode()) && t.getGrade() <= 4.0) {
+            if (Objects.equals(t.getExamination(), examination) && t.getGrade() <= 4.0) {
                 return true;
             }
         }
