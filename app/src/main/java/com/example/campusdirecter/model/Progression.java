@@ -55,6 +55,7 @@ public class Progression {
     public int sumCredits() {
         return Arrays.stream(attempts)
                 .map(Attempt::getExamination)
+                .filter(this::isPassed)
                 .map(Examination::getCourse)
                 .map(Course::getModule)
                 .mapToInt(Module::getCredits)
