@@ -1,8 +1,11 @@
 package com.example.campusdirecter;
 
 import android.os.Bundle;
+import android.util.Log;
 
-import com.example.campusdirecter.api.RequestAction;
+import com.example.campusdirecter.api.Services;
+import com.example.campusdirecter.model.Student;
+import com.example.campusdirecter.model.Timetable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,13 +19,36 @@ import com.example.campusdirecter.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    RequestAction requestAction = new RequestAction(this);
+    Services services = new Services(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestAction.getStudent();
-        requestAction.getTimetable();
+        services.getStudent(new Services.StudentResponseListener() {
+            @Override
+            public void onError(String message) {
+
+            }
+
+            @Override
+            public void onResponse(Student student) {
+                Log.d("SEMINARGRUPPE: ",student.getSeminarGroup());
+
+            }
+        });
+        services.getTimetable(new Services.TimetableResponseListener() {
+            @Override
+            public void onError(String message) {
+
+            }
+
+            @Override
+            public void onResponse(Timetable timetable) {
+
+                Log.d("Summary: ", timetable.getSummary());
+
+            }
+        });
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
