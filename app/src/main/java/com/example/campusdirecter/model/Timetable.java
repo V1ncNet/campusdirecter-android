@@ -1,7 +1,5 @@
 package com.example.campusdirecter.model;
 
-import android.app.usage.UsageEvents;
-
 public class Timetable {
     private String id;
     private String summary;
