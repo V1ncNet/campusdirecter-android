@@ -5,10 +5,10 @@ public class Examination {
     private String name;
     private Course course;
     private Interval interval;
-    private Location location;
+    private String location;
     private Lecturer supervision;
 
-    public Examination(String code, String name, Course course, Interval interval, Location location, Lecturer supervision) {
+    public Examination(String code, String name, Course course, Interval interval, String location, Lecturer supervision) {
         this.code = code;
         this.name = name;
         this.course = course;
@@ -33,7 +33,7 @@ public class Examination {
         return interval;
     }
 
-    public Location getLocation() {
+    public String getLocation() {
         return location;
     }
 

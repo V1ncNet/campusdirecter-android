@@ -3,10 +3,10 @@ package com.example.campusdirecter.model;
 public class Lecture {
     private String summary;
     private Lecturer lecturer;
-    private Location location;
+    private String location;
     private Interval interval;
 
-    public Lecture(String summary, Lecturer lecturer, Location location, Interval interval) {
+    public Lecture(String summary, Lecturer lecturer, String location, Interval interval) {
         this.summary = summary;
         this.lecturer = lecturer;
         this.location = location;
@@ -20,7 +20,7 @@ public class Lecture {
         return lecturer;
     }
 
-    public Location getLocation() {
+    public String getLocation() {
         return location;
     }
 
