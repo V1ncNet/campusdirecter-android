@@ -2,10 +2,10 @@ package com.example.campusdirecter.model;
 
 public class Attempt {
     private Examination examination;
-    private int grade;
+    private float grade;
     private int counter;
 
-    public Attempt(Examination examination, int grade, int counter) {
+    public Attempt(Examination examination, float grade, int counter) {
         this.examination = examination;
         this.grade = grade;
         this.counter = counter;
@@ -15,7 +15,7 @@ public class Attempt {
         return examination;
     }
 
-    public int getGrade() {
+    public float getGrade() {
         return grade;
     }
 
