@@ -1,7 +1,5 @@
 package com.example.campusdirecter.student.support;
 
-import android.util.Log;
-
 import com.example.campusdirecter.http.HttpClient;
 import com.example.campusdirecter.http.HttpRequest;
 import com.example.campusdirecter.http.HttpResponse;
@@ -43,7 +41,6 @@ public class HttpStudentRepository implements StudentRepository {
 
         @Override
         public void onSuccess(JSONObject response) {
-            Log.d("Studentobject: ", response.toString());
             String studentString = response.toString();
             Gson gson = new Gson();
             Student student = gson.fromJson(studentString, Student.class);
@@ -52,7 +49,6 @@ public class HttpStudentRepository implements StudentRepository {
 
         @Override
         public void onError(Throwable error) {
-            Log.d("someting went wrong: ", error.toString(), error.fillInStackTrace());
             callback.onError(error);
         }
     }
