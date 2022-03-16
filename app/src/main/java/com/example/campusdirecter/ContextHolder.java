@@ -2,6 +2,8 @@ package com.example.campusdirecter;
 
 import android.content.Context;
 
+import com.example.campusdirecter.http.HttpClient;
+import com.example.campusdirecter.http.VolleyHttpClient;
 import com.example.campusdirecter.student.model.StudentRepository;
 import com.example.campusdirecter.student.support.VolleyStudentRepository;
 import com.example.campusdirecter.timetable.model.TimetableRepository;
@@ -15,8 +17,11 @@ public class ContextHolder {
     private static ContextHolder instance = null;
     private static Context context;
 
+    private HttpClient client;
+
     private ContextHolder(Context context) {
         ContextHolder.context = context;
+        this.client = getHttpClient();
     }
 
     public static ContextHolder getInstance(Context context) {
@@ -26,6 +31,13 @@ public class ContextHolder {
             }
         }
         return instance;
+    }
+
+    public HttpClient getHttpClient() {
+        if (null == client) {
+            client = VolleyHttpClient.getInstance(context);
+        }
+        return client;
     }
 
     public StudentRepository getStudentRepository() {
