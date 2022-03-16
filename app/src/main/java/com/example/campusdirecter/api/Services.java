@@ -17,13 +17,12 @@ public class Services {
 
     Context context;
 
-    public Services(Context context){
-        this.context=context;
+    public Services(Context context) {
+        this.context = context;
     }
 
     @FunctionalInterface
-    public interface StudentResponseListener
-    {
+    public interface StudentResponseListener {
         default void onError(String message) {
         }
 
@@ -32,8 +31,7 @@ public class Services {
     }
 
     @FunctionalInterface
-    public interface TimetableResponseListener
-    {
+    public interface TimetableResponseListener {
         default void onError(String message) {
         }
 
@@ -41,66 +39,48 @@ public class Services {
 
     }
 
-
-    public void getStudent(StudentResponseListener responseListener)
-    {
+    public void getStudent(StudentResponseListener responseListener) {
 
         String url = "https://srv-dev01.campusdirecter.vinado.de/student/0815421337420";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("Studentobject: ", response.toString());
                         String studentString = response.toString();
-                        Gson  gson = new Gson();
-                        Student student =  gson.fromJson(studentString, Student.class);
+                        Gson gson = new Gson();
+                        Student student = gson.fromJson(studentString, Student.class);
                         responseListener.onResponse(student);
                     }
                 }, new Response.ErrorListener() {
-
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("someting went wrong: ", error.toString());
                         responseListener.onError("Somthing went wrong");
-
                     }
                 });
         SingletonRequestQueue.getInstance(context).addToRequestQueue(jsonObjectRequest);
     }
 
-    public void getTimetable(TimetableResponseListener responseListener)
-
-    {
+    public void getTimetable(TimetableResponseListener responseListener) {
         String url = "https://srv-dev01.campusdirecter.vinado.de/timetable?studentId=0815421337420";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("Timetableobject: ", response.toString());
                         String timeTableString = response.toString();
-                        Gson  gson = new Gson();
-                        Timetable timeTable =  gson.fromJson(timeTableString, Timetable.class);
+                        Gson gson = new Gson();
+                        Timetable timeTable = gson.fromJson(timeTableString, Timetable.class);
                         responseListener.onResponse(timeTable);
-
-
                     }
                 }, new Response.ErrorListener() {
-
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("someting went wrong: ", error.toString());
                         responseListener.onError("Something went wrong");
-
                     }
                 });
         SingletonRequestQueue.getInstance(context).addToRequestQueue(jsonObjectRequest);
-
-
-
     }
-
-
-
 }
