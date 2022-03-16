@@ -15,10 +15,7 @@ import org.json.JSONObject;
 
 public class Services {
 
-    String url;
     Context context;
-    Student student;
-
 
     public Services(Context context){
         this.context=context;
@@ -44,7 +41,7 @@ public class Services {
     public void getStudent(StudentResponseListener responseListener)
     {
 
-        url = "https://srv-dev01.campusdirecter.vinado.de/student/0815421337420";
+        String url = "https://srv-dev01.campusdirecter.vinado.de/student/0815421337420";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
@@ -53,7 +50,7 @@ public class Services {
                         Log.d("Studentobject: ", response.toString());
                         String studentString = response.toString();
                         Gson  gson = new Gson();
-                        student =  gson.fromJson(studentString, Student.class);
+                        Student student =  gson.fromJson(studentString, Student.class);
                         responseListener.onResponse(student);
                     }
                 }, new Response.ErrorListener() {
@@ -71,7 +68,7 @@ public class Services {
     public void getTimetable(TimetableResponseListener responseListener)
 
     {
-        url = "https://srv-dev01.campusdirecter.vinado.de/timetable?studentId=0815421337420";
+        String url = "https://srv-dev01.campusdirecter.vinado.de/timetable?studentId=0815421337420";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
