@@ -21,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
     public MainActivity() {
-        ContextHolder contextHolder = ContextHolder.getInstance(this);
-        this.studentRepository = contextHolder.getStudentRepository();
-        this.timetableRepository = contextHolder.getTimetableRepository();
+        ServiceLocator serviceLocator = ServiceLocator.getInstance(this);
+        this.studentRepository = serviceLocator.getStudentRepository();
+        this.timetableRepository = serviceLocator.getTimetableRepository();
     }
 
     @Override

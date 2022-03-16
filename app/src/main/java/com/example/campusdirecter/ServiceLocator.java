@@ -12,22 +12,22 @@ import com.example.campusdirecter.timetable.support.HttpTimetableRepository;
 /**
  * @author Vincent Nadoll (s3003870@ba-sachsen.de)
  */
-public class ContextHolder {
+public class ServiceLocator {
 
-    private static ContextHolder instance = null;
+    private static ServiceLocator instance = null;
     private static Context context;
 
     private HttpClient client;
 
-    private ContextHolder(Context context) {
-        ContextHolder.context = context;
+    private ServiceLocator(Context context) {
+        ServiceLocator.context = context;
         this.client = getHttpClient();
     }
 
-    public static ContextHolder getInstance(Context context) {
+    public static ServiceLocator getInstance(Context context) {
         if (instance == null) {
-            synchronized (ContextHolder.class) {
-                instance = new ContextHolder(context);
+            synchronized (ServiceLocator.class) {
+                instance = new ServiceLocator(context);
             }
         }
         return instance;
