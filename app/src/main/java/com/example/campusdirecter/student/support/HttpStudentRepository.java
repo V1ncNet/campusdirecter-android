@@ -53,7 +53,7 @@ public class HttpStudentRepository implements StudentRepository {
         @Override
         public void onError(Throwable error) {
             Log.d("someting went wrong: ", error.toString(), error.fillInStackTrace());
-            callback.onError("Somthing went wrong");
+            callback.onError(error);
         }
     }
 }

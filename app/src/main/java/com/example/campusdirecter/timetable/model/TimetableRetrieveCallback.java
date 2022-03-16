@@ -10,6 +10,6 @@ public interface TimetableRetrieveCallback {
 
     void onResponse(Timetable timetable);
 
-    default void onError(String message) {
+    default void onError(Throwable error) {
     }
 }

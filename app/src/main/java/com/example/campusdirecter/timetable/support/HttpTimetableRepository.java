@@ -53,7 +53,7 @@ public class HttpTimetableRepository implements TimetableRepository {
         @Override
         public void onError(Throwable error) {
             Log.d("someting went wrong: ", error.toString());
-            callback.onError("Something went wrong");
+            callback.onError(error);
         }
     }
 }

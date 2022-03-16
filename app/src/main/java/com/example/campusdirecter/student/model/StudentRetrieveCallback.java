@@ -10,6 +10,6 @@ public interface StudentRetrieveCallback {
 
     void onResponse(Student student);
 
-    default void onError(String message) {
+    default void onError(Throwable error) {
     }
 }
