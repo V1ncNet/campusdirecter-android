@@ -66,12 +66,14 @@ public class ServiceLocator {
 
     public StudentRepository getStudentRepository() {
         HttpClient client = getHttpClient();
-        return new HttpStudentRepository(client);
+        GsonBuilder gsonBuilder = getGsonBuilder();
+        return new HttpStudentRepository(client, gsonBuilder);
     }
 
     public TimetableRepository getTimetableRepository() {
         HttpClient client = getHttpClient();
-        return new HttpTimetableRepository(client);
+        GsonBuilder gsonBuilder = getGsonBuilder();
+        return new HttpTimetableRepository(client, gsonBuilder);
     }
 
 

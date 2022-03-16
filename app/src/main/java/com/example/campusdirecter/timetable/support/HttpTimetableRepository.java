@@ -7,6 +7,7 @@ import com.example.campusdirecter.model.Timetable;
 import com.example.campusdirecter.timetable.model.TimetableRepository;
 import com.example.campusdirecter.timetable.model.TimetableRetrieveCallback;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONObject;
 
@@ -19,9 +20,11 @@ import java.net.URL;
 public class HttpTimetableRepository implements TimetableRepository {
 
     private final HttpClient client;
+    private final GsonBuilder gsonBuilder;
 
-    public HttpTimetableRepository(HttpClient client) {
+    public HttpTimetableRepository(HttpClient client, GsonBuilder gsonBuilder) {
         this.client = client;
+        this.gsonBuilder = gsonBuilder;
     }
 
     @Override
@@ -31,7 +34,7 @@ public class HttpTimetableRepository implements TimetableRepository {
     }
 
 
-    private static final class RetrieveCallbackAdapter implements HttpResponse {
+    private final class RetrieveCallbackAdapter implements HttpResponse {
 
         private final TimetableRetrieveCallback callback;
 
@@ -41,8 +44,9 @@ public class HttpTimetableRepository implements TimetableRepository {
 
         @Override
         public void onSuccess(JSONObject response) {
+            Gson gson = gsonBuilder.create();
             String timeTableString = response.toString();
-            Gson gson = new Gson();
+
             Timetable timeTable = gson.fromJson(timeTableString, Timetable.class);
             callback.onResponse(timeTable);
         }

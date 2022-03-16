@@ -7,6 +7,7 @@ import com.example.campusdirecter.model.Student;
 import com.example.campusdirecter.student.model.StudentRepository;
 import com.example.campusdirecter.student.model.StudentRetrieveCallback;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONObject;
 
@@ -19,9 +20,11 @@ import java.net.URL;
 public class HttpStudentRepository implements StudentRepository {
 
     private final HttpClient client;
+    private final GsonBuilder gsonBuilder;
 
-    public HttpStudentRepository(HttpClient client) {
+    public HttpStudentRepository(HttpClient client, GsonBuilder gsonBuilder) {
         this.client = client;
+        this.gsonBuilder = gsonBuilder;
     }
 
     @Override
@@ -31,7 +34,7 @@ public class HttpStudentRepository implements StudentRepository {
     }
 
 
-    private static final class RetrieveCallbackAdapter implements HttpResponse {
+    private final class RetrieveCallbackAdapter implements HttpResponse {
 
         private final StudentRetrieveCallback callback;
 
@@ -41,8 +44,9 @@ public class HttpStudentRepository implements StudentRepository {
 
         @Override
         public void onSuccess(JSONObject response) {
+            Gson gson = gsonBuilder.create();
             String studentString = response.toString();
-            Gson gson = new Gson();
+
             Student student = gson.fromJson(studentString, Student.class);
             callback.onResponse(student);
         }
