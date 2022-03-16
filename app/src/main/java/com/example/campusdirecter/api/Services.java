@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 
 public class Services {
 
-    Context context;
+    private final Context context;
 
     public Services(Context context) {
         this.context = context;
