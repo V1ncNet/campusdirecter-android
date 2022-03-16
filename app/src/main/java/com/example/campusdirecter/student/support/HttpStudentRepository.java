@@ -18,11 +18,11 @@ import java.net.URL;
  * @author jureao
  * @author Vincent Nadoll (s3003870@ba-sachsen.de)
  */
-public class VolleyStudentRepository implements StudentRepository {
+public class HttpStudentRepository implements StudentRepository {
 
     private final HttpClient client;
 
-    public VolleyStudentRepository(HttpClient client) {
+    public HttpStudentRepository(HttpClient client) {
         this.client = client;
     }
 

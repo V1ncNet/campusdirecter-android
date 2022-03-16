@@ -5,9 +5,9 @@ import android.content.Context;
 import com.example.campusdirecter.http.HttpClient;
 import com.example.campusdirecter.http.VolleyHttpClient;
 import com.example.campusdirecter.student.model.StudentRepository;
-import com.example.campusdirecter.student.support.VolleyStudentRepository;
+import com.example.campusdirecter.student.support.HttpStudentRepository;
 import com.example.campusdirecter.timetable.model.TimetableRepository;
-import com.example.campusdirecter.timetable.support.VolleyTimetableRepository;
+import com.example.campusdirecter.timetable.support.HttpTimetableRepository;
 
 /**
  * @author Vincent Nadoll (s3003870@ba-sachsen.de)
@@ -42,11 +42,11 @@ public class ContextHolder {
 
     public StudentRepository getStudentRepository() {
         HttpClient client = getHttpClient();
-        return new VolleyStudentRepository(client);
+        return new HttpStudentRepository(client);
     }
 
     public TimetableRepository getTimetableRepository() {
         HttpClient client = getHttpClient();
-        return new VolleyTimetableRepository(client);
+        return new HttpTimetableRepository(client);
     }
 }

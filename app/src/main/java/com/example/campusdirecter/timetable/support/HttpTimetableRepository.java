@@ -18,11 +18,11 @@ import java.net.URL;
  * @author jureao
  * @author Vincent Nadoll (s3003870@ba-sachsen.de)
  */
-public class VolleyTimetableRepository implements TimetableRepository {
+public class HttpTimetableRepository implements TimetableRepository {
 
     private final HttpClient client;
 
-    public VolleyTimetableRepository(HttpClient client) {
+    public HttpTimetableRepository(HttpClient client) {
         this.client = client;
     }
 
