@@ -7,12 +7,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.campusdirecter.MainActivity;
 import com.example.campusdirecter.model.Student;
 import com.example.campusdirecter.model.Timetable;
 import com.google.gson.Gson;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Services {
