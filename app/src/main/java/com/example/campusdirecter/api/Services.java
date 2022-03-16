@@ -21,17 +21,21 @@ public class Services {
         this.context=context;
     }
 
+    @FunctionalInterface
     public interface StudentResponseListener
     {
-        void onError(String message);
+        default void onError(String message) {
+        }
 
         void onResponse(Student student);
 
     }
 
+    @FunctionalInterface
     public interface TimetableResponseListener
     {
-        void onError(String message);
+        default void onError(String message) {
+        }
 
         void onResponse(Timetable timetable);
 

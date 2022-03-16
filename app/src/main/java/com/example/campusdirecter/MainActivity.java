@@ -26,22 +26,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         services.getStudent(new Services.StudentResponseListener() {
             @Override
-            public void onError(String message) {
-
-            }
-
-            @Override
             public void onResponse(Student student) {
                 Log.d("SEMINARGRUPPE: ",student.getSeminarGroup());
-
             }
         });
         services.getTimetable(new Services.TimetableResponseListener() {
-            @Override
-            public void onError(String message) {
-
-            }
-
             @Override
             public void onResponse(Timetable timetable) {
 
