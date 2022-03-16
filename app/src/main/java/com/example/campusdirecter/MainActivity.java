@@ -3,18 +3,15 @@ package com.example.campusdirecter;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.campusdirecter.api.Services;
-import com.example.campusdirecter.model.Student;
-import com.example.campusdirecter.model.Timetable;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.campusdirecter.api.Services;
 import com.example.campusdirecter.databinding.ActivityMainBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,20 +21,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        services.getStudent(new Services.StudentResponseListener() {
-            @Override
-            public void onResponse(Student student) {
-                Log.d("SEMINARGRUPPE: ",student.getSeminarGroup());
-            }
-        });
-        services.getTimetable(new Services.TimetableResponseListener() {
-            @Override
-            public void onResponse(Timetable timetable) {
-
-                Log.d("Summary: ", timetable.getSummary());
-
-            }
-        });
+        services.getStudent(student -> Log.d("SEMINARGRUPPE: ", student.getSeminarGroup()));
+        services.getTimetable(timetable -> Log.d("Summary: ", timetable.getSummary()));
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
