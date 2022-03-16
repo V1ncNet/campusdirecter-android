@@ -29,21 +29,31 @@ public class HttpStudentRepository implements StudentRepository {
     @Override
     public void retrieve(StudentRetrieveCallback callback) {
         String url = "https://srv-dev01.campusdirecter.vinado.de/student/0815421337420";
-        client.get(HttpRequest.sneaky(() -> new URL(url)), new HttpResponse() {
-            @Override
-            public void onSuccess(JSONObject response) {
-                Log.d("Studentobject: ", response.toString());
-                String studentString = response.toString();
-                Gson gson = new Gson();
-                Student student = gson.fromJson(studentString, Student.class);
-                callback.onResponse(student);
-            }
+        client.get(HttpRequest.sneaky(() -> new URL(url)), new RetrieveCallbackAdapter(callback));
+    }
 
-            @Override
-            public void onError(Throwable error) {
-                Log.d("someting went wrong: ", error.toString(), error.fillInStackTrace());
-                callback.onError("Somthing went wrong");
-            }
-        });
+
+    private static final class RetrieveCallbackAdapter implements HttpResponse {
+
+        private final StudentRetrieveCallback callback;
+
+        public RetrieveCallbackAdapter(StudentRetrieveCallback callback) {
+            this.callback = callback;
+        }
+
+        @Override
+        public void onSuccess(JSONObject response) {
+            Log.d("Studentobject: ", response.toString());
+            String studentString = response.toString();
+            Gson gson = new Gson();
+            Student student = gson.fromJson(studentString, Student.class);
+            callback.onResponse(student);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            Log.d("someting went wrong: ", error.toString(), error.fillInStackTrace());
+            callback.onError("Somthing went wrong");
+        }
     }
 }
