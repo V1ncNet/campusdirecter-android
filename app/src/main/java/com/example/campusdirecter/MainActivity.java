@@ -9,20 +9,28 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.campusdirecter.api.Services;
 import com.example.campusdirecter.databinding.ActivityMainBinding;
+import com.example.campusdirecter.student.model.StudentRepository;
+import com.example.campusdirecter.timetable.model.TimetableRepository;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final StudentRepository studentRepository;
+    private final TimetableRepository timetableRepository;
     private ActivityMainBinding binding;
-    Services services = new Services(this);
+
+    public MainActivity() {
+        ContextHolder contextHolder = ContextHolder.getInstance();
+        this.studentRepository = contextHolder.getStudentRepository(this);
+        this.timetableRepository = contextHolder.getTimetableRepository(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        services.getStudent(student -> Log.d("SEMINARGRUPPE: ", student.getSeminarGroup()));
-        services.getTimetable(timetable -> Log.d("Summary: ", timetable.getSummary()));
+        studentRepository.retrieve(student -> Log.d("SEMINARGRUPPE: ", student.getSeminarGroup()));
+        timetableRepository.retrieve(timetable -> Log.d("Summary: ", timetable.getSummary()));
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
