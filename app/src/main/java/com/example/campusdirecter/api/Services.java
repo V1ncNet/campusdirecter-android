@@ -7,6 +7,8 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.campusdirecter.model.Student;
 import com.example.campusdirecter.model.Timetable;
+import com.example.campusdirecter.student.model.StudentRetrieveCallback;
+import com.example.campusdirecter.timetable.model.TimetableRetrieveCallback;
 import com.google.gson.Gson;
 
 public class Services {
@@ -17,25 +19,7 @@ public class Services {
         this.context = context;
     }
 
-    @FunctionalInterface
-    public interface StudentResponseListener {
-        default void onError(String message) {
-        }
-
-        void onResponse(Student student);
-
-    }
-
-    @FunctionalInterface
-    public interface TimetableResponseListener {
-        default void onError(String message) {
-        }
-
-        void onResponse(Timetable timetable);
-
-    }
-
-    public void getStudent(StudentResponseListener responseListener) {
+    public void getStudent(StudentRetrieveCallback responseListener) {
 
         String url = "https://srv-dev01.campusdirecter.vinado.de/student/0815421337420";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
@@ -52,7 +36,7 @@ public class Services {
         SingletonRequestQueue.getInstance(context).addToRequestQueue(jsonObjectRequest);
     }
 
-    public void getTimetable(TimetableResponseListener responseListener) {
+    public void getTimetable(TimetableRetrieveCallback responseListener) {
         String url = "https://srv-dev01.campusdirecter.vinado.de/timetable?studentId=0815421337420";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, response -> {
