@@ -41,10 +41,12 @@ public class ContextHolder {
     }
 
     public StudentRepository getStudentRepository() {
-        return new VolleyStudentRepository(context);
+        HttpClient client = getHttpClient();
+        return new VolleyStudentRepository(client);
     }
 
     public TimetableRepository getTimetableRepository() {
-        return new VolleyTimetableRepository(context);
+        HttpClient client = getHttpClient();
+        return new VolleyTimetableRepository(client);
     }
 }
