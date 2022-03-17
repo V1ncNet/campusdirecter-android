@@ -5,9 +5,15 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Module {
 
-    private String code;
+    @EqualsAndHashCode.Include
+    private final String code;
     private int credits;
     private List<Course> courses;
 
@@ -15,18 +21,6 @@ public class Module {
         this.code = code;
         this.credits = credits;
         this.courses = new ArrayList<>(courses);
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public List<Course> getCourses() {
-        return courses;
-    }
-
-    public int getCredits() {
-        return credits;
     }
 
     public List<Examination> getExaminations() {
