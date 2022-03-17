@@ -1,13 +1,10 @@
 package com.example.campusdirecter.model;
 
-public class CompulsoryModule extends Module{
-    // for modules with multiple courses
-    public CompulsoryModule(String code, Course[] courses, int credits) {
-        super(code, courses, credits);
-    }
+import java.util.Collection;
 
-    // for modules with one course
-    public CompulsoryModule(String code, Course course, int credits) {
-        super(code, course, credits);
+public class CompulsoryModule extends Module{
+
+    public CompulsoryModule(String code, Collection<? extends Course> courses, int credits) {
+        super(code, courses, credits);
     }
 }
