@@ -8,13 +8,13 @@ import java.util.stream.Collectors;
 public class Module {
 
     private String code;
-    private List<Course> courses;
     private int credits;
+    private List<Course> courses;
 
-    public Module(String code, Collection<? extends Course> courses, int credits) {
+    public Module(String code, int credits, Collection<? extends Course> courses) {
         this.code = code;
-        this.courses = new ArrayList<>(courses);
         this.credits = credits;
+        this.courses = new ArrayList<>(courses);
     }
 
     public String getCode() {
