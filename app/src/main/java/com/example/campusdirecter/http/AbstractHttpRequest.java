@@ -8,9 +8,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+import lombok.Getter;
+
 /**
  * @author Vincent Nadoll (s3003870@ba-sachsen.de)
  */
+@Getter
 public abstract class AbstractHttpRequest implements HttpRequest {
 
     private final URL url;
@@ -24,16 +27,6 @@ public abstract class AbstractHttpRequest implements HttpRequest {
     public AbstractHttpRequest(URL url, JSONObject body) {
         this.url = url;
         this.body = body;
-    }
-
-    @Override
-    public URL getUrl() {
-        return url;
-    }
-
-    @Override
-    public JSONObject getBody() {
-        return body;
     }
 
     @Override

@@ -13,19 +13,17 @@ import org.json.JSONObject;
 
 import java.net.URL;
 
+import lombok.RequiredArgsConstructor;
+
 /**
  * @author jureao
  * @author Vincent Nadoll (s3003870@ba-sachsen.de)
  */
+@RequiredArgsConstructor
 public class HttpStudentRepository implements StudentRepository {
 
     private final HttpClient client;
     private final GsonBuilder gsonBuilder;
-
-    public HttpStudentRepository(HttpClient client, GsonBuilder gsonBuilder) {
-        this.client = client;
-        this.gsonBuilder = gsonBuilder;
-    }
 
     @Override
     public void retrieve(StudentRetrieveCallback callback) {
@@ -34,13 +32,10 @@ public class HttpStudentRepository implements StudentRepository {
     }
 
 
+    @RequiredArgsConstructor
     private final class RetrieveCallbackAdapter implements HttpResponse {
 
         private final StudentRetrieveCallback callback;
-
-        public RetrieveCallbackAdapter(StudentRetrieveCallback callback) {
-            this.callback = callback;
-        }
 
         @Override
         public void onSuccess(JSONObject response) {
