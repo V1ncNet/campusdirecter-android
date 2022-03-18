@@ -4,11 +4,9 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-import lombok.ToString;
 import lombok.Value;
 
 @Value
-@ToString(doNotUseGetters = true) // FIXME: Fix parse function
 public class Interval {
 
     LocalDateTime start;
@@ -24,7 +22,7 @@ public class Interval {
 
     private Duration parse(String duration) {
         // TODO: Parse SI unit
-        String decimalValue = duration.replaceAll("/D", "");
+        String decimalValue = duration.replaceAll("\\D*", "");
         return Duration.of(Long.parseLong(decimalValue), ChronoUnit.MINUTES);
     }
 }
