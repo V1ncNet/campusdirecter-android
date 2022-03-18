@@ -16,8 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Value;
 
 /**
- * Value Object that represents a time interval. The provided duration must be string compatible
- * with the defined pattern in {@link SiParser#PATTERN}.
+ * Value Object that represents a time interval.
  *
  * @author Saboffzl
  * @author Vincent Nadoll (s3003870@ba-sachsen.de)
@@ -26,7 +25,20 @@ import lombok.Value;
 public class Interval {
 
     LocalDateTime start;
-    String duration;
+    String duration; // Must be a string in order to be deserialized by Gson
+
+    public Interval(LocalDateTime start, Duration duration) {
+        this(start, duration.get(ChronoUnit.SECONDS) + "s");
+    }
+
+    public Interval(LocalDateTime start, long minutes) {
+        this(start, minutes + "m");
+    }
+
+    protected Interval(LocalDateTime start, String duration) {
+        this.start = start;
+        this.duration = duration;
+    }
 
     public Duration getDuration() {
         return SiParser.parse(duration);

@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -63,5 +64,23 @@ public class IntervalTest {
         LocalDateTime end = interval.getEnd();
 
         assertEquals(now.plus(90, ChronoUnit.MILLIS), end);
+    }
+
+    @Test
+    public void determiningEndDate_shouldAdd90Minutes() {
+        Interval interval = new Interval(now, 90);
+
+        LocalDateTime end = interval.getEnd();
+
+        assertEquals(now.plus(90, ChronoUnit.MINUTES), end);
+    }
+
+    @Test
+    public void determiningEndDate_shouldAddProvidedDuration() {
+        Interval interval = new Interval(now, Duration.ofMinutes(90));
+
+        LocalDateTime end = interval.getEnd();
+
+        assertEquals(now.plus(90, ChronoUnit.MINUTES), end);
     }
 }
