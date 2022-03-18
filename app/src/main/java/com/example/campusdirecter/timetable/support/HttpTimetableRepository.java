@@ -27,7 +27,7 @@ public class HttpTimetableRepository implements TimetableRepository {
 
     @Override
     public void retrieve(TimetableRetrieveCallback callback) {
-        String url = "https://srv-dev01.campusdirecter.vinado.de/timetable?studentId=0815421337420";
+        String url = "https://srv-dev01.campusdirecter.vinado.de/timetable";
         client.get(HttpRequest.sneaky(() -> new URL(url)), new RetrieveCallbackAdapter(callback));
     }
 

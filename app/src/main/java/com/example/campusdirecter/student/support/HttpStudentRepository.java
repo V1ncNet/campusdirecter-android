@@ -27,7 +27,7 @@ public class HttpStudentRepository implements StudentRepository {
 
     @Override
     public void retrieve(StudentRetrieveCallback callback) {
-        String url = "https://srv-dev01.campusdirecter.vinado.de/student/0815421337420";
+        String url = "https://srv-dev01.campusdirecter.vinado.de/student";
         client.get(HttpRequest.sneaky(() -> new URL(url)), new RetrieveCallbackAdapter(callback));
     }
 
