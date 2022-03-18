@@ -1,19 +1,15 @@
 package com.example.campusdirecter.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Person {
-    private String id;
+
+    @EqualsAndHashCode.Include
+    private final String id;
     private Name name;
-
-    public Person(String id, Name name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public Name getName() {
-        return name;
-    }
 }

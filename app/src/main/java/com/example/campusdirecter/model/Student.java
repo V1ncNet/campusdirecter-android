@@ -1,6 +1,16 @@
 package com.example.campusdirecter.model;
 
-public class Student extends Person{
+import androidx.annotation.Nullable;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString(callSuper = true)
+public class Student extends Person {
+
     private String seminarGroup;
     private Progression progression;
 
@@ -9,11 +19,12 @@ public class Student extends Person{
         this.seminarGroup = seminarGroup;
         this.progression = progression;
     }
-    public String getSeminarGroup() {
-        return seminarGroup;
-    }
 
-    public Progression getProgression() {
-        return progression;
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Student that = (Student) obj;
+        return getId().equals(that.getId());
     }
 }

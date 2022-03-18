@@ -6,37 +6,23 @@ import java.util.function.DoublePredicate;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import lombok.Value;
+
+@Value
+@ToString(exclude = {"student"})
+@EqualsAndHashCode(exclude = {"student"})
 public class Progression {
-    private Student student;
-    private int semester;
-    private Attempt[] attempts;
+
+    Student student;
+    int semester;
+    Attempt[] attempts;
 
     public Progression(Student student, int semester, Attempt[] attempts) {
         this.student = student;
         this.semester = semester;
         this.attempts = attempts;
-    }
-
-    public Student getStudent() {
-        return student;
-    }
-
-    public int getSemester() {
-        return semester;
-    }
-
-    public Attempt[] getAttempts() {
-        return attempts;
-    }
-
-    // checks if an examination was attempted and the grade is better than 4.0
-    public boolean isPassed(Examination examination) {
-        return Arrays.stream(attempts)
-                .filter(byExam(matches(examination)))
-                .mapToDouble(Attempt::getGrade)
-                .filter(le(4.0f))
-                .findAny()
-                .isPresent();
     }
 
     private static Predicate<Attempt> byExam(Function<Examination, Boolean> extractor) {
@@ -49,6 +35,16 @@ public class Progression {
 
     private static DoublePredicate le(Number number) {
         return value -> value <= number.doubleValue();
+    }
+
+    // checks if an examination was attempted and the grade is better than 4.0
+    public boolean isPassed(Examination examination) {
+        return Arrays.stream(attempts)
+                .filter(byExam(matches(examination)))
+                .mapToDouble(Attempt::getGrade)
+                .filter(le(4.0f))
+                .findAny()
+                .isPresent();
     }
 
     // accumulates current credits

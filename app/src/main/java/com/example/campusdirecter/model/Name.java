@@ -1,9 +1,13 @@
 package com.example.campusdirecter.model;
 
+import lombok.Value;
+
+@Value
 public class Name {
-    private String salutation;
-    private String firstName;
-    private String lastName;
+
+    String salutation;
+    String firstName;
+    String lastName;
 
     public Name(String salutation, String firstName, String lastName) {
         this.salutation = salutation;
@@ -11,15 +15,8 @@ public class Name {
         this.lastName = lastName;
     }
 
-    public String getSalutation() {
-        return salutation;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
+    @Override
+    public String toString() {
+        return salutation + " " + firstName + " " + lastName;
     }
 }
