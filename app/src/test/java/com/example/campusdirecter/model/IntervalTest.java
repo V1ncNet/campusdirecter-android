@@ -21,7 +21,7 @@ public class IntervalTest {
     }
 
     @Test
-    public void creatingMinuteInterval_shouldDetermineEndDate() {
+    public void determiningEndDate_shouldInterpretMinuteDuration() {
         Interval interval = new Interval(now, "90m");
 
         LocalDateTime end = interval.getEnd();
