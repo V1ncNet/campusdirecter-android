@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
     public MainActivity() {
-        ServiceLocator serviceLocator = ServiceLocator.getInstance(this);
+        ServiceLocator serviceLocator = ServiceLocator.getInstance();
         this.studentRepository = serviceLocator.getStudentRepository();
         this.timetableRepository = serviceLocator.getTimetableRepository();
     }

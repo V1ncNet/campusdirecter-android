@@ -2,8 +2,6 @@ package com.example.campusdirecter;
 
 import static java.time.format.DateTimeFormatter.ISO_DATE_TIME;
 
-import android.content.Context;
-
 import com.example.campusdirecter.http.HttpClient;
 import com.example.campusdirecter.http.VolleyHttpClient;
 import com.example.campusdirecter.student.model.StudentRepository;
@@ -30,20 +28,18 @@ import java.time.ZonedDateTime;
 public class ServiceLocator {
 
     private static ServiceLocator instance = null;
-    private static Context context;
 
     private HttpClient client;
     private GsonBuilder gsonBuilder;
 
-    private ServiceLocator(Context context) {
-        ServiceLocator.context = context;
+    private ServiceLocator() {
         this.client = getHttpClient();
     }
 
-    public static ServiceLocator getInstance(Context context) {
+    public static ServiceLocator getInstance() {
         if (instance == null) {
             synchronized (ServiceLocator.class) {
-                instance = new ServiceLocator(context);
+                instance = new ServiceLocator();
             }
         }
         return instance;
@@ -51,7 +47,7 @@ public class ServiceLocator {
 
     public HttpClient getHttpClient() {
         if (null == client) {
-            client = VolleyHttpClient.getInstance(context);
+            client = VolleyHttpClient.getInstance(ContextAwareApplication.getContext());
         }
         return client;
     }
