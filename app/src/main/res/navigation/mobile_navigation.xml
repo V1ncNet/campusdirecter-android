@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.campusdirecter.ui.home.HomeFragment"
+        android:name="com.example.campusdirecter.timetable.ui.TimetableFragment"
         android:label="@string/title_timetable"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_timetable" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
