@@ -22,7 +22,7 @@ import lombok.Value;
  * @author Vincent Nadoll (s3003870@ba-sachsen.de)
  */
 @Value
-public class Interval {
+public class Interval implements Comparable<Interval> {
 
     LocalDateTime start;
     String duration; // Must be a string in order to be deserialized by Gson
@@ -47,6 +47,11 @@ public class Interval {
     public LocalDateTime getEnd() {
         Duration duration = SiParser.parse(this.duration);
         return start.plus(duration);
+    }
+
+    @Override
+    public int compareTo(Interval that) {
+        return Objects.compare(this.start, that.start, LocalDateTime::compareTo);
     }
 
 

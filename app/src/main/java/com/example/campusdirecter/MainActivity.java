@@ -1,7 +1,6 @@
 package com.example.campusdirecter;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -10,27 +9,15 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.campusdirecter.databinding.ActivityMainBinding;
-import com.example.campusdirecter.student.model.StudentRepository;
-import com.example.campusdirecter.timetable.model.TimetableRepository;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final StudentRepository studentRepository;
-    private final TimetableRepository timetableRepository;
     private ActivityMainBinding binding;
-
-    public MainActivity() {
-        ServiceLocator serviceLocator = ServiceLocator.getInstance(this);
-        this.studentRepository = serviceLocator.getStudentRepository();
-        this.timetableRepository = serviceLocator.getTimetableRepository();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        studentRepository.retrieve(student -> Log.d("SEMINARGRUPPE: ", student.getSeminarGroup()));
-        timetableRepository.retrieve(timetable -> Log.d("Summary: ", timetable.getSummary()));
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
