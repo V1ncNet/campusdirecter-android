@@ -8,6 +8,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.campusdirecter.R;
+import com.example.campusdirecter.common.LocalizedToastErrorCallback;
 import com.example.campusdirecter.model.Lecture;
 import com.example.campusdirecter.timetable.model.TimetableRepository;
 
@@ -36,7 +38,7 @@ public class TimetableModel extends ViewModel {
                     .map(pairwise((date, lecture) -> new Day(date, wrap(lecture))))
                     .collect(toList());
             content.postValue(days);
-        });
+        }, new LocalizedToastErrorCallback(R.string.error_timetable_retrieve));
     }
 
     private static List<Event> wrap(List<Lecture> value) {

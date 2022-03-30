@@ -1,5 +1,6 @@
 package com.example.campusdirecter.student.support;
 
+import com.example.campusdirecter.common.ErrorCallback;
 import com.example.campusdirecter.http.HttpClient;
 import com.example.campusdirecter.http.HttpRequest;
 import com.example.campusdirecter.http.HttpResponse;
@@ -26,9 +27,9 @@ public class HttpStudentRepository implements StudentRepository {
     private final GsonBuilder gsonBuilder;
 
     @Override
-    public void retrieve(StudentRetrieveCallback callback) {
+    public void retrieve(StudentRetrieveCallback callback, ErrorCallback error) {
         String url = "https://srv-dev01.campusdirecter.vinado.de/student";
-        client.get(HttpRequest.sneaky(() -> new URL(url)), new RetrieveCallbackAdapter(callback));
+        client.get(HttpRequest.sneaky(() -> new URL(url)), new RetrieveCallbackAdapter(callback, error));
     }
 
 
@@ -36,6 +37,7 @@ public class HttpStudentRepository implements StudentRepository {
     private final class RetrieveCallbackAdapter implements HttpResponse {
 
         private final StudentRetrieveCallback callback;
+        private final ErrorCallback errorCallback;
 
         @Override
         public void onSuccess(JSONObject response) {
@@ -49,6 +51,7 @@ public class HttpStudentRepository implements StudentRepository {
         @Override
         public void onError(Throwable error) {
             callback.onError(error);
+            errorCallback.onError(error);
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.campusdirecter.timetable.support;
 
+import com.example.campusdirecter.common.ErrorCallback;
 import com.example.campusdirecter.http.HttpClient;
 import com.example.campusdirecter.http.HttpRequest;
 import com.example.campusdirecter.http.HttpResponse;
@@ -26,9 +27,9 @@ public class HttpTimetableRepository implements TimetableRepository {
     private final GsonBuilder gsonBuilder;
 
     @Override
-    public void retrieve(TimetableRetrieveCallback callback) {
+    public void retrieve(TimetableRetrieveCallback callback, ErrorCallback error) {
         String url = "https://srv-dev01.campusdirecter.vinado.de/timetable";
-        client.get(HttpRequest.sneaky(() -> new URL(url)), new RetrieveCallbackAdapter(callback));
+        client.get(HttpRequest.sneaky(() -> new URL(url)), new RetrieveCallbackAdapter(callback, error));
     }
 
 
@@ -36,6 +37,7 @@ public class HttpTimetableRepository implements TimetableRepository {
     private final class RetrieveCallbackAdapter implements HttpResponse {
 
         private final TimetableRetrieveCallback callback;
+        private final ErrorCallback errorCallback;
 
         @Override
         public void onSuccess(JSONObject response) {
@@ -49,6 +51,7 @@ public class HttpTimetableRepository implements TimetableRepository {
         @Override
         public void onError(Throwable error) {
             callback.onError(error);
+            errorCallback.onError(error);
         }
     }
 }
