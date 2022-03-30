@@ -1,38 +1,52 @@
 package com.example.campusdirecter.ui.profile;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.campusdirecter.R;
-import com.example.campusdirecter.databinding.FragmentNotificationsBinding;
-import com.example.campusdirecter.ui.notifications.NotificationsViewModel;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.campusdirecter.ServiceLocator;
+import com.example.campusdirecter.common.ViewModelFactory;
+import com.example.campusdirecter.databinding.FragmentProfileBinding;
 
 
 public class ProfileFragment extends Fragment {
 
 
     private ProfileViewModel profileViewModel;
-    private FragmentNotificationsBinding binding;
-
+    private FragmentProfileBinding binding;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
 
-        }
+        ViewModelFactory factory = new ViewModelFactory(ServiceLocator.getInstance());
+        profileViewModel = new ViewModelProvider(this, factory).get(ProfileViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        super.onCreateView(inflater,container,savedInstanceState);
+        binding = FragmentProfileBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+        return root;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        profileViewModel.getStudent().observe(getViewLifecycleOwner(), student -> {
+            binding.studentnameText.setText(student.getName().getLastName());
+            binding.snummerText.setText(student.getId());
+            binding.seminargroupText.setText(student.getSeminarGroup());
+
+        });
     }
 }
