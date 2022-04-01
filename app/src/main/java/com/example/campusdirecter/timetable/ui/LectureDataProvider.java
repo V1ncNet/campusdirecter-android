@@ -43,7 +43,7 @@ public class LectureDataProvider extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.model = dataset.get(position);
-        holder.date.setText(FORMATTER.format(dataset.get(position).getDate()));
+        holder.date.setText(FORMATTER.format(holder.model.getDate()));
     }
 
     @Override
