@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.campusdirecter.databinding.FragmentDayBinding;
 
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
@@ -43,7 +44,12 @@ public class LectureDataProvider extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.model = dataset.get(position);
-        holder.title.setText(FORMATTER.format(holder.model.getDate()));
+        holder.title.setText(format(holder.model.getDate()));
+    }
+
+    private String format(TemporalAccessor date) {
+        String format = FORMATTER.format(date);
+        return format.replace(".", "");
     }
 
     @Override
