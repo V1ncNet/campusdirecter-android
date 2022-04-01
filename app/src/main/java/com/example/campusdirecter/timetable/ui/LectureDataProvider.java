@@ -15,7 +15,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
 
@@ -45,7 +44,6 @@ public class LectureDataProvider extends RecyclerView.Adapter<ViewHolder> {
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.model = dataset.get(position);
         holder.date.setText(FORMATTER.format(dataset.get(position).getDate()));
-        holder.mContentView.setText(dataset.get(position).getEvents().stream().map(Event::getName).collect(Collectors.joining("\n")));
     }
 
     @Override
@@ -57,19 +55,11 @@ public class LectureDataProvider extends RecyclerView.Adapter<ViewHolder> {
     protected static class ViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView date;
-        private final TextView mContentView;
         public Day model;
 
         public ViewHolder(FragmentDayBinding binding) {
             super(binding.getRoot());
             date = binding.date;
-            mContentView = binding.content;
-        }
-
-        @NonNull
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
         }
     }
 }
