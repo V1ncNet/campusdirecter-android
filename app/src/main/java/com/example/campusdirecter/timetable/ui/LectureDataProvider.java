@@ -43,7 +43,7 @@ public class LectureDataProvider extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.model = dataset.get(position);
-        holder.date.setText(FORMATTER.format(holder.model.getDate()));
+        holder.title.setText(FORMATTER.format(holder.model.getDate()));
     }
 
     @Override
@@ -54,12 +54,12 @@ public class LectureDataProvider extends RecyclerView.Adapter<ViewHolder> {
 
     protected static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView date;
+        private final TextView title;
         public Day model;
 
         public ViewHolder(FragmentDayBinding binding) {
             super(binding.getRoot());
-            date = binding.date;
+            title = binding.date;
         }
     }
 }
