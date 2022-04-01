@@ -36,7 +36,8 @@ public class EventList extends Adapter<ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.model = events.get(position);
-        holder.summary.setText(holder.model.getName());
+        holder.lecturer.setText(holder.model.getLecturer());
+        holder.location.setText(holder.model.getLocation());
     }
 
     @Override
@@ -46,13 +47,15 @@ public class EventList extends Adapter<ViewHolder> {
 
     protected static final class ViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView summary;
+        private final TextView lecturer;
+        private final TextView location;
 
         private Event model;
 
         public ViewHolder(@NonNull ViewEventListBinding binding) {
             super(binding.getRoot());
-            summary = binding.summary;
+            lecturer = binding.lecturer;
+            location = binding.location;
         }
     }
 }

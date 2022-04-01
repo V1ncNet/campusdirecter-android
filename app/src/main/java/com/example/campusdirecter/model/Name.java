@@ -17,6 +17,10 @@ public class Name {
 
     @Override
     public String toString() {
-        return salutation + " " + firstName + " " + lastName;
+        return salutation() + " " + firstName + " " + lastName;
+    }
+
+    private String salutation() {
+        return null == salutation ? "" : salutation;
     }
 }
