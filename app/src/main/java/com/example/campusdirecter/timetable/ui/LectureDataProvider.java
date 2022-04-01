@@ -43,7 +43,7 @@ public class LectureDataProvider extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = dataset.get(position);
+        holder.model = dataset.get(position);
         holder.date.setText(FORMATTER.format(dataset.get(position).getDate()));
         holder.mContentView.setText(dataset.get(position).getEvents().stream().map(Event::getName).collect(Collectors.joining("\n")));
     }
@@ -58,7 +58,7 @@ public class LectureDataProvider extends RecyclerView.Adapter<ViewHolder> {
 
         private final TextView date;
         private final TextView mContentView;
-        public Day mItem;
+        public Day model;
 
         public ViewHolder(FragmentDayBinding binding) {
             super(binding.getRoot());
