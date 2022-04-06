@@ -24,14 +24,11 @@ public class Name {
         return null == salutation ? "" : salutation;
     }
 
-    public String getInitials()
-    {
-        if (firstName!=null && lastName !=null){
-           return  firstName.charAt(0) + ""  + lastName.charAt(0);
-       }
-
-       else{
-           return "";
-       }
+    public String getInitials() {
+        if (firstName != null && lastName != null) {
+            return firstName.charAt(0) + "" + lastName.charAt(0);
+        } else {
+            return "";
+        }
     }
 }

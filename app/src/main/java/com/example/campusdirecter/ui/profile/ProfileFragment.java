@@ -34,7 +34,7 @@ public class ProfileFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        super.onCreateView(inflater,container,savedInstanceState);
+        super.onCreateView(inflater, container, savedInstanceState);
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         return root;
@@ -45,7 +45,7 @@ public class ProfileFragment extends DialogFragment {
         super.onViewCreated(view, savedInstanceState);
         profileViewModel.getStudent().observe(getViewLifecycleOwner(), student -> {
             binding.studentnameText.setText(student.getName().toString());
-            binding.snummerText.setText("s"+student.getId());
+            binding.snummerText.setText("s" + student.getId());
             binding.seminargroupText.setText(student.getSeminarGroup());
 
         });
