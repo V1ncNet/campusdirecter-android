@@ -2,12 +2,15 @@ package com.example.campusdirecter.timetable.ui;
 
 import static com.example.campusdirecter.timetable.ui.EventList.ViewHolder;
 
+import android.content.res.Resources;
+import android.content.res.Resources.Theme;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,6 +36,11 @@ public class EventList extends Adapter<ViewHolder> {
 
     @NonNull
     private final List<Event> events;
+    private static final @ColorRes int[] colors = new int[] {
+            R.color.secondaryLightColor,
+            R.color.secondaryColor,
+            R.color.secondaryDarkColor,
+    };
 
     @NonNull
     @Override
@@ -56,10 +64,18 @@ public class EventList extends Adapter<ViewHolder> {
         ArrayAdapter aAdapter = new ArrayAdapter(ContextAwareApplication.getContext(), R.layout.view_lecture_list, R.id.lecture_item, output){
             @NonNull
             @Override
-            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View view = super.getView(position, convertView, parent);
-                view.setBackgroundColor(0x1FED5501);
+            public View getView(int pos, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(pos, convertView, parent);
+                int color = getColor(holder, position);
+                view.setBackgroundColor(color);
                 return view;
+            }
+
+            private int getColor(@NonNull ViewHolder holder, int index) {
+                int color = colors[index % colors.length];
+                Theme theme = holder.lecture.getContext().getTheme();
+
+                return holder.lecture.getResources().getColor(color, theme);
             }
         };
 
