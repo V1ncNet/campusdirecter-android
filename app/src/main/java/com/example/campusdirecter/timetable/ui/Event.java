@@ -29,7 +29,6 @@ public class Event {
                 .map(Lecture::getLecturer)
                 .map(Person::getName)
                 .map(Name::toString)
-                .map(String::trim)
                 .orElse(null);
     }
 
