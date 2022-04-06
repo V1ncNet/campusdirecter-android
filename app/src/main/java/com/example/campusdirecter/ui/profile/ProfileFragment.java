@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.campusdirecter.ServiceLocator;
@@ -15,7 +15,7 @@ import com.example.campusdirecter.common.ViewModelFactory;
 import com.example.campusdirecter.databinding.FragmentProfileBinding;
 
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends DialogFragment {
 
 
     private ProfileViewModel profileViewModel;
@@ -28,6 +28,7 @@ public class ProfileFragment extends Fragment {
 
         ViewModelFactory factory = new ViewModelFactory(ServiceLocator.getInstance());
         profileViewModel = new ViewModelProvider(this, factory).get(ProfileViewModel.class);
+
     }
 
     @Override
@@ -43,10 +44,16 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         profileViewModel.getStudent().observe(getViewLifecycleOwner(), student -> {
-            binding.studentnameText.setText(student.getName().getLastName());
-            binding.snummerText.setText(student.getId());
+            binding.studentnameText.setText(student.getName().getFullName());
+            binding.snummerText.setText("s"+student.getId());
             binding.seminargroupText.setText(student.getSeminarGroup());
 
+        });
+        binding.btnCloseDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
         });
     }
 }

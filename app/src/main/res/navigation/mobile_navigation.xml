@@ -8,23 +8,15 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.campusdirecter.timetable.ui.TimetableFragment"
-        android:label="@string/title_timetable"
         tools:layout="@layout/fragment_timetable" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.campusdirecter.ui.dashboard.DashboardFragment"
-        android:label="@string/title_modules"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.campusdirecter.ui.notifications.NotificationsFragment"
-        android:label="@string/title_downloads"
         tools:layout="@layout/fragment_notifications" />
-    <fragment
-        android:id="@+id/navigation_profile"
-        android:name="com.example.campusdirecter.ui.profile.ProfileFragment"
-        android:label="Profil"
-        tools:layout="@layout/fragment_profile" />
 </navigation>
