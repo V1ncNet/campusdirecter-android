@@ -4,11 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android/CampusDirecter/app/src/main/res/drawable/border_event.xml" value="0.3595" />
+        <entry key="..\:/Android/CampusDirecter/app/src/main/res/drawable/border_lecture.xml" value="0.2845" />
         <entry key="..\:/Android/CampusDirecter/app/src/main/res/drawable/divider.xml" value="0.3595" />
         <entry key="..\:/Android/CampusDirecter/app/src/main/res/drawable/download_files.xml" value="0.2845" />
         <entry key="..\:/Android/CampusDirecter/app/src/main/res/drawable/gender_neutral_user.xml" value="0.2845" />
         <entry key="..\:/Android/CampusDirecter/app/src/main/res/drawable/puzzle.xml" value="0.243" />
         <entry key="..\:/Android/CampusDirecter/app/src/main/res/drawable/timetable.xml" value="0.2845" />
+        <entry key="..\:/Android/CampusDirecter/app/src/main/res/drawable/timetable_selector.xml" value="0.2845" />
         <entry key="..\:/Android/CampusDirecter/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Android/CampusDirecter/app/src/main/res/layout/activity_timetable.xml" value="0.3804347826086957" />
         <entry key="..\:/Android/CampusDirecter/app/src/main/res/layout/fragment_dashboard.xml" value="0.2137791286727457" />

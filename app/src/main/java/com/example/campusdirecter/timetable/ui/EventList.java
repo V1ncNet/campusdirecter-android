@@ -37,10 +37,13 @@ public class EventList extends Adapter<ViewHolder> {
     @NonNull
     private final List<Event> events;
     private static final @ColorRes int[] colors = new int[] {
-            R.color.secondaryLightColor,
-            R.color.secondaryColor,
-            R.color.secondaryDarkColor,
+            R.color.textBackgroundLightColor,
+            R.color.textBackgroundColor,
+            R.color.textBackgroundDarkColor,
+            R.color.textBackgroundColor,
     };
+
+    private static int counter = 0;
 
     @NonNull
     @Override
@@ -66,7 +69,8 @@ public class EventList extends Adapter<ViewHolder> {
             @Override
             public View getView(int pos, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View view = super.getView(pos, convertView, parent);
-                int color = getColor(holder, position);
+                //int color = getColor(holder, holder.getBindingAdapterPosition());
+                int color = getColor(holder, counter); // FOR TESTING ONLY replace with line above
                 view.setBackgroundColor(color);
                 return view;
             }
@@ -83,6 +87,8 @@ public class EventList extends Adapter<ViewHolder> {
 
         holder.lecturer.setText(holder.model.getLecturer());
         holder.location.setText(holder.model.getLocation());
+
+        counter++;
     }
 
     @Override
