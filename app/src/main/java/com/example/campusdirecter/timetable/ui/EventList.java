@@ -2,7 +2,6 @@ package com.example.campusdirecter.timetable.ui;
 
 import static com.example.campusdirecter.timetable.ui.EventList.ViewHolder;
 
-import android.content.res.Resources;
 import android.content.res.Resources.Theme;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
