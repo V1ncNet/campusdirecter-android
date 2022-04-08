@@ -15,7 +15,6 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
-import com.example.campusdirecter.ContextAwareApplication;
 import com.example.campusdirecter.R;
 import com.example.campusdirecter.databinding.ViewEventListBinding;
 import com.example.campusdirecter.model.Lecture;
@@ -56,7 +55,7 @@ public class EventList extends Adapter<ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.model = events.get(position);
 
-        holder.lecture.setAdapter(createLectureList(holder.model.getLectures()));
+        holder.lecture.setAdapter(createLectureList(holder.model.getLectures(), holder.itemView));
         holder.lecturer.setText(holder.model.getLecturer());
         holder.location.setText(holder.model.getLocation());
 
@@ -64,12 +63,13 @@ public class EventList extends Adapter<ViewHolder> {
     }
 
     @NonNull
-    private ArrayAdapter<String> createLectureList(@NonNull Collection<? extends Lecture> lectures) {
+    private ArrayAdapter<String> createLectureList(@NonNull Collection<? extends Lecture> lectures,
+                                                   @NonNull View parent) {
         List<String> output = lectures.stream()
                 .map(this::formatLecture)
                 .collect(Collectors.toList());
 
-        return new ArrayAdapter<String>(ContextAwareApplication.getContext(), R.layout.view_lecture_list, R.id.lecture_item, output) {
+        return new ArrayAdapter<String>(parent.getContext(), R.layout.view_lecture_list, R.id.lecture_item, output) {
             @NonNull
             @Override
             public View getView(int pos, @Nullable View convertView, @NonNull ViewGroup parent) {
