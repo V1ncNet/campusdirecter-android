@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -24,7 +24,7 @@ import com.example.campusdirecter.MainActivity;
 import com.example.campusdirecter.R;
 import com.example.campusdirecter.databinding.ActivityLoginBinding;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends FragmentActivity {
 
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
