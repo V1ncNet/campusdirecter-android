@@ -66,16 +66,16 @@ public class EventList extends Adapter<ViewHolder> {
             public View getView(int pos, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View view = super.getView(pos, convertView, parent);
                 //int color = getColor(holder, holder.getBindingAdapterPosition());
-                int color = getColor(holder, counter); // FOR TESTING ONLY replace with line above
+                int color = getColor(parent, counter); // FOR TESTING ONLY replace with line above
                 view.setBackgroundColor(color);
                 return view;
             }
 
-            private int getColor(@NonNull ViewHolder holder, int index) {
+            private int getColor(@NonNull ViewGroup parent, int index) {
                 int color = colors[index % colors.length];
-                Theme theme = holder.lecture.getContext().getTheme();
+                Theme theme = parent.getContext().getTheme();
 
-                return holder.lecture.getResources().getColor(color, theme);
+                return parent.getResources().getColor(color, theme);
             }
         };
 
