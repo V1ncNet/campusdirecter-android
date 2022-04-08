@@ -1,6 +1,7 @@
 package com.example.campusdirecter.security.ui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.campusdirecter.MainActivity;
 import com.example.campusdirecter.R;
 import com.example.campusdirecter.databinding.ActivityLoginBinding;
 
@@ -75,6 +77,9 @@ public class LoginActivity extends AppCompatActivity {
 
                 //Complete and destroy login activity once successful
                 finish();
+
+                Intent forward = new Intent(LoginActivity.this, MainActivity.class);
+                LoginActivity.this.startActivity(forward);
             }
         });
 
