@@ -20,6 +20,7 @@ import com.example.campusdirecter.R;
 import com.example.campusdirecter.databinding.ViewEventListBinding;
 import com.example.campusdirecter.model.Lecture;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -55,12 +56,20 @@ public class EventList extends Adapter<ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.model = events.get(position);
 
-        List<String> output = holder.model.getLectures()
-                .stream()
+        holder.lecture.setAdapter(createLectureList(holder.model.getLectures()));
+        holder.lecturer.setText(holder.model.getLecturer());
+        holder.location.setText(holder.model.getLocation());
+
+        counter++;
+    }
+
+    @NonNull
+    private ArrayAdapter<String> createLectureList(@NonNull Collection<? extends Lecture> lectures) {
+        List<String> output = lectures.stream()
                 .map(this::formatLecture)
                 .collect(Collectors.toList());
 
-        ArrayAdapter<String> aAdapter = new ArrayAdapter<String>(ContextAwareApplication.getContext(), R.layout.view_lecture_list, R.id.lecture_item, output) {
+        return new ArrayAdapter<String>(ContextAwareApplication.getContext(), R.layout.view_lecture_list, R.id.lecture_item, output) {
             @NonNull
             @Override
             public View getView(int pos, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -78,13 +87,6 @@ public class EventList extends Adapter<ViewHolder> {
                 return parent.getResources().getColor(color, theme);
             }
         };
-
-        holder.lecture.setAdapter(aAdapter);
-
-        holder.lecturer.setText(holder.model.getLecturer());
-        holder.location.setText(holder.model.getLocation());
-
-        counter++;
     }
 
     private String formatLecture(Lecture lecture) {
