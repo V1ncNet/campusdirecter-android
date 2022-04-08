@@ -16,7 +16,10 @@ import com.example.campusdirecter.R;
 import com.example.campusdirecter.databinding.ViewLectureListBinding;
 import com.example.campusdirecter.model.Lecture;
 
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Locale;
+import java.util.Optional;
 
 /**
  * @author Vincent Nadoll (s3003870@ba-sachsen.de)
@@ -59,6 +62,35 @@ public class LectureAdapter extends ArrayAdapter<PositionableLecture> {
 
         holder.lecture.setText(formatLecture(holder.model.getLecture()));
         holder.lecture.setBackgroundColor(getColor(holder.view, holder.model.getPosition()));
+
+        holder.lectureBreak.setText(lectureBreakTextBetween(position, position + 1));
+        holder.lectureBreak.setVisibility(lectureBreakVisibilityAt(position + 1));
+    }
+
+    private int lectureBreakVisibilityAt(int position) {
+        return getLecture(position)
+                .map(lecture -> View.VISIBLE)
+                .orElse(View.GONE);
+    }
+
+    @Nullable
+    private String lectureBreakTextBetween(int startIndex, int endIndex) {
+        LocalTime currentEnd = getLecture(startIndex)
+                .map(Lecture::getEndTime)
+                .orElseThrow(IllegalStateException::new);
+        return getLecture(endIndex)
+                .map(Lecture::getStartTime)
+                .map(start -> currentEnd.until(start, ChronoUnit.MINUTES))
+                .map(duration -> duration + " Minuten")
+                .orElse(null);
+    }
+
+    private Optional<Lecture> getLecture(int position) {
+        try {
+            return Optional.of(getItem(position).getLecture());
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return Optional.empty();
+        }
     }
 
     private String formatLecture(Lecture lecture) {
@@ -78,12 +110,14 @@ public class LectureAdapter extends ArrayAdapter<PositionableLecture> {
 
         private final View view;
         private final TextView lecture;
+        private final TextView lectureBreak;
 
         private PositionableLecture model;
 
         private ViewHolder(ViewLectureListBinding binding) {
             this.view = binding.getRoot();
             this.lecture = binding.lecture;
+            this.lectureBreak = binding.lectureBreak;
 
             this.view.setTag(this);
         }
