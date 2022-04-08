@@ -21,8 +21,8 @@ import com.example.campusdirecter.databinding.ViewEventListBinding;
 import com.example.campusdirecter.model.Lecture;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
 
@@ -55,13 +55,15 @@ public class EventList extends Adapter<ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.model = events.get(position);
 
-        List<String> output = new ArrayList<>();
-        List<Lecture> lectures = events.get(position).getLectures();
-        for (Lecture lecture : lectures) {
-            LocalTime start = lecture.getStartTime();
-            LocalTime end = lecture.getEndTime();
-            output.add(lecture.getSummary() + "\n" + start.toString() + " - " + end.toString());
-        }
+        List<String> output = holder.model.getLectures()
+                .stream()
+                .map(lecture -> {
+                    LocalTime start = lecture.getStartTime();
+                    LocalTime end = lecture.getEndTime();
+                    return lecture.getSummary() + "\n" + start.toString() + " - " + end.toString();
+                })
+                .collect(Collectors.toList());
+
         ArrayAdapter aAdapter = new ArrayAdapter(ContextAwareApplication.getContext(), R.layout.view_lecture_list, R.id.lecture_item, output) {
             @NonNull
             @Override
