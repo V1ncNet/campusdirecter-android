@@ -41,7 +41,7 @@ public class EventList extends Adapter<ViewHolder> {
             R.color.textBackgroundColor,
     };
 
-    private static int counter = 0;
+    private int counter = 0;
 
     @NonNull
     @Override
