@@ -60,7 +60,7 @@ public class EventList extends Adapter<ViewHolder> {
                 .map(this::formatLecture)
                 .collect(Collectors.toList());
 
-        ArrayAdapter aAdapter = new ArrayAdapter(ContextAwareApplication.getContext(), R.layout.view_lecture_list, R.id.lecture_item, output) {
+        ArrayAdapter<String> aAdapter = new ArrayAdapter<String>(ContextAwareApplication.getContext(), R.layout.view_lecture_list, R.id.lecture_item, output) {
             @NonNull
             @Override
             public View getView(int pos, @Nullable View convertView, @NonNull ViewGroup parent) {
