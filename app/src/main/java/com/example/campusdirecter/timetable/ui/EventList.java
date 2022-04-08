@@ -22,7 +22,6 @@ import com.example.campusdirecter.model.Lecture;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
 
@@ -65,9 +64,9 @@ public class EventList extends Adapter<ViewHolder> {
     @NonNull
     private ArrayAdapter<String> createLectureList(@NonNull Collection<? extends Lecture> lectures,
                                                    @NonNull View parent) {
-        List<String> output = lectures.stream()
+        String[] output = lectures.stream()
                 .map(this::formatLecture)
-                .collect(Collectors.toList());
+                .toArray(String[]::new);
 
         return new ArrayAdapter<String>(parent.getContext(), R.layout.view_lecture_list, R.id.lecture_item, output) {
             @NonNull
