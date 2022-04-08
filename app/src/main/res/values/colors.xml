@@ -11,4 +11,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light">#FFE4E4E4</color>
+    <color name="textBackgroundLightColor">#AFD2E3</color>
+    <color name="textBackgroundColor">#8CC5FF</color>
+    <color name="textBackgroundDarkColor">#A8DEFF</color>
 </resources>
