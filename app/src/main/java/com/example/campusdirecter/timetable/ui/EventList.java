@@ -20,8 +20,8 @@ import com.example.campusdirecter.R;
 import com.example.campusdirecter.databinding.ViewEventListBinding;
 import com.example.campusdirecter.model.Lecture;
 
-import java.time.LocalTime;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
@@ -57,11 +57,7 @@ public class EventList extends Adapter<ViewHolder> {
 
         List<String> output = holder.model.getLectures()
                 .stream()
-                .map(lecture -> {
-                    LocalTime start = lecture.getStartTime();
-                    LocalTime end = lecture.getEndTime();
-                    return lecture.getSummary() + "\n" + start.toString() + " - " + end.toString();
-                })
+                .map(this::formatLecture)
                 .collect(Collectors.toList());
 
         ArrayAdapter aAdapter = new ArrayAdapter(ContextAwareApplication.getContext(), R.layout.view_lecture_list, R.id.lecture_item, output) {
@@ -89,6 +85,11 @@ public class EventList extends Adapter<ViewHolder> {
         holder.location.setText(holder.model.getLocation());
 
         counter++;
+    }
+
+    private String formatLecture(Lecture lecture) {
+        Locale preferredLocale = Locale.forLanguageTag("de-DE");
+        return LecturePrinter.instance().print(lecture, preferredLocale);
     }
 
     @Override
