@@ -29,7 +29,7 @@ public class EventList extends Adapter<ViewHolder> {
     @NonNull
     private final List<Event> events;
 
-    private int counter = 0;
+    private int counter;
 
     @NonNull
     @Override
