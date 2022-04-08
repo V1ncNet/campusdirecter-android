@@ -36,7 +36,7 @@ public class EventList extends Adapter<ViewHolder> {
 
     @NonNull
     private final List<Event> events;
-    private static final @ColorRes int[] colors = new int[] {
+    private static final @ColorRes int[] colors = new int[]{
             R.color.textBackgroundLightColor,
             R.color.textBackgroundColor,
             R.color.textBackgroundDarkColor,
@@ -59,12 +59,12 @@ public class EventList extends Adapter<ViewHolder> {
 
         List<String> output = new ArrayList<>();
         List<Lecture> lectures = events.get(position).getLectures();
-        for (Lecture lecture: lectures) {
+        for (Lecture lecture : lectures) {
             LocalTime start = lecture.getStartTime();
             LocalTime end = lecture.getEndTime();
             output.add(lecture.getSummary() + "\n" + start.toString() + " - " + end.toString());
         }
-        ArrayAdapter aAdapter = new ArrayAdapter(ContextAwareApplication.getContext(), R.layout.view_lecture_list, R.id.lecture_item, output){
+        ArrayAdapter aAdapter = new ArrayAdapter(ContextAwareApplication.getContext(), R.layout.view_lecture_list, R.id.lecture_item, output) {
             @NonNull
             @Override
             public View getView(int pos, @Nullable View convertView, @NonNull ViewGroup parent) {
