@@ -11,4 +11,4 @@
     android:layout_marginBottom="70dp"
     app:layoutManager="LinearLayoutManager"
     tools:context=".timetable.ui.TimetableFragment"
-    tools:listitem="@layout/fragment_day" />
+    tools:listitem="@layout/view_day_list" />

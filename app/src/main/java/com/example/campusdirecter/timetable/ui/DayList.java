@@ -1,6 +1,6 @@
 package com.example.campusdirecter.timetable.ui;
 
-import static com.example.campusdirecter.timetable.ui.LectureDataProvider.ViewHolder;
+import static com.example.campusdirecter.timetable.ui.DayList.ViewHolder;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.RecycledViewPool;
 
-import com.example.campusdirecter.databinding.FragmentDayBinding;
+import com.example.campusdirecter.databinding.ViewDayListBinding;
 
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
@@ -25,7 +25,7 @@ import lombok.RequiredArgsConstructor;
  * @author Vincent Nadoll (s3003870@ba-sachsen.de)
  */
 @RequiredArgsConstructor
-public class LectureDataProvider extends RecyclerView.Adapter<ViewHolder> {
+public class DayList extends RecyclerView.Adapter<ViewHolder> {
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("eee'\n'dd", Locale.GERMANY);
 
@@ -40,7 +40,7 @@ public class LectureDataProvider extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        FragmentDayBinding binding = FragmentDayBinding.inflate(inflater, parent, false);
+        ViewDayListBinding binding = ViewDayListBinding.inflate(inflater, parent, false);
         return new ViewHolder(binding);
     }
 
@@ -79,7 +79,7 @@ public class LectureDataProvider extends RecyclerView.Adapter<ViewHolder> {
         private final RecyclerView events;
         public Day model;
 
-        public ViewHolder(FragmentDayBinding binding) {
+        public ViewHolder(ViewDayListBinding binding) {
             super(binding.getRoot());
             title = binding.date;
             events = binding.events;
