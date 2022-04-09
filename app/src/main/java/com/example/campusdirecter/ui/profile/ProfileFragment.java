@@ -27,8 +27,7 @@ public class ProfileFragment extends DialogFragment {
         super.onCreate(savedInstanceState);
 
         ViewModelFactory factory = new ViewModelFactory(ServiceLocator.getInstance());
-        profileViewModel = new ViewModelProvider(this, factory).get(ProfileViewModel.class);
-
+        profileViewModel = new ViewModelProvider(getActivity(), factory).get(ProfileViewModel.class);
     }
 
     @Override
