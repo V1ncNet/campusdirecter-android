@@ -25,7 +25,7 @@ public class TimetableFragment extends Fragment {
 
     private TimetableModel model;
     private FragmentTimetableBinding binding;
-    private LectureDataProvider dataProvider;
+    private DayList dataProvider;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class TimetableFragment extends Fragment {
         binding = FragmentTimetableBinding.inflate(inflater, container, false);
         RecyclerView view = binding.getRoot();
 
-        dataProvider = new LectureDataProvider(new ArrayList<>());
+        dataProvider = new DayList(new ArrayList<>());
         view.setLayoutManager(new LinearLayoutManager(view.getContext()));
         view.setAdapter(dataProvider);
 

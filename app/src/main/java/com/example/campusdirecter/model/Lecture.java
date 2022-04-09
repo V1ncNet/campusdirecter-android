@@ -1,6 +1,7 @@
 package com.example.campusdirecter.model;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import lombok.Value;
 
@@ -14,5 +15,13 @@ public class Lecture {
 
     public LocalDateTime getStart() {
         return interval.getStart();
+    }
+
+    public LocalTime getStartTime() {
+        return interval.getStart().toLocalTime();
+    }
+
+    public LocalTime getEndTime() {
+        return interval.getEnd().toLocalTime();
     }
 }
