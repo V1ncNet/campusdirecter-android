@@ -1,7 +1,7 @@
-package com.example.campusdirecter.security.support;
+package com.example.campusdirecter.security.model;
 
-import com.example.campusdirecter.security.model.LoggedInUser;
-import com.example.campusdirecter.security.model.LoginResultCallback;
+import com.example.campusdirecter.security.support.LoginDataSource;
+import com.example.campusdirecter.security.support.Result;
 
 import lombok.RequiredArgsConstructor;
 

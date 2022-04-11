@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.campusdirecter.R;
 import com.example.campusdirecter.security.model.LoggedInUser;
+import com.example.campusdirecter.security.model.LoginRepository;
 import com.example.campusdirecter.security.model.LoginResultCallback;
-import com.example.campusdirecter.security.support.LoginRepository;
 import com.example.campusdirecter.security.support.Result;
 
 public class LoginViewModel extends ViewModel {

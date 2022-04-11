@@ -1,11 +1,11 @@
 package com.example.campusdirecter.security.ui;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.annotation.NonNull;
 
+import com.example.campusdirecter.security.model.LoginRepository;
 import com.example.campusdirecter.security.support.LoginDataSource;
-import com.example.campusdirecter.security.support.LoginRepository;
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.
