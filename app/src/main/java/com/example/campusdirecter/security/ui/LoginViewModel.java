@@ -31,8 +31,7 @@ public class LoginViewModel extends ViewModel {
         loginRepository.login(token, new LoginResultCallback() {
             @Override
             public void onResponse(Result<LoggedInUser> result) {
-                LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
-                loginResult.setValue(new LoginResult(data));
+                succeed((Result.Success<LoggedInUser>) result);
             }
 
             @Override
@@ -46,8 +45,7 @@ public class LoginViewModel extends ViewModel {
         loginRepository.login(username, password, new LoginResultCallback() {
             @Override
             public void onResponse(Result<LoggedInUser> result) {
-                LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
-                loginResult.setValue(new LoginResult(data));
+                succeed((Result.Success<LoggedInUser>) result);
             }
 
             @Override
@@ -56,6 +54,11 @@ public class LoginViewModel extends ViewModel {
                 loginResult.setValue(new LoginResult(R.string.login_failed));
             }
         });
+    }
+
+    private void succeed(Result.Success<LoggedInUser> result) {
+        LoggedInUser data = result.getData();
+        loginResult.setValue(new LoginResult(data));
     }
 
     public void loginDataChanged(String username, String password) {
