@@ -32,7 +32,7 @@ public class LoginViewModel extends ViewModel {
             @Override
             public void onResponse(Result<LoggedInUser> result) {
                 LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
-                loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
+                loginResult.setValue(new LoginResult(new LoggedInUserView(data.getToken())));
             }
 
             @Override
