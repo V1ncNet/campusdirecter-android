@@ -10,15 +10,14 @@ import com.example.campusdirecter.security.model.LoginRepository;
 import com.example.campusdirecter.security.model.LoginResultCallback;
 import com.example.campusdirecter.security.support.Result;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 public class LoginViewModel extends ViewModel {
 
     private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
     private MutableLiveData<LoginResult> loginResult = new MutableLiveData<>();
-    private LoginRepository loginRepository;
-
-    public LoginViewModel(LoginRepository loginRepository) {
-        this.loginRepository = loginRepository;
-    }
+    private final LoginRepository loginRepository;
 
     LiveData<LoginFormState> getLoginFormState() {
         return loginFormState;
