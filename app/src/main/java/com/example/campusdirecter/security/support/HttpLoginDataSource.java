@@ -7,6 +7,7 @@ import com.example.campusdirecter.http.AbstractHttpRequest;
 import com.example.campusdirecter.http.HttpClient;
 import com.example.campusdirecter.http.HttpResponse;
 import com.example.campusdirecter.security.model.LoggedInUser;
+import com.example.campusdirecter.security.model.LoginDataSource;
 import com.example.campusdirecter.security.model.LoginResultCallback;
 
 import org.json.JSONObject;
@@ -22,10 +23,11 @@ import lombok.SneakyThrows;
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.
  */
-public class LoginDataSource {
+public class HttpLoginDataSource implements LoginDataSource {
 
     private final HttpClient client = ServiceLocator.getInstance().getHttpClient();
 
+    @Override
     public void login(String username, String password, LoginResultCallback callback) {
         AbstractHttpRequest request = createRequest(username, password);
         client.post(request, new LoginCallbackAdapter(username, callback));
@@ -54,6 +56,7 @@ public class LoginDataSource {
         return new URL("https://srv-dev01.campusdirecter.vinado.de/login");
     }
 
+    @Override
     public void logout() {
         // TODO: revoke authentication
     }

@@ -1,6 +1,5 @@
 package com.example.campusdirecter.security.model;
 
-import com.example.campusdirecter.security.support.LoginDataSource;
 import com.example.campusdirecter.security.support.Result;
 
 import lombok.RequiredArgsConstructor;

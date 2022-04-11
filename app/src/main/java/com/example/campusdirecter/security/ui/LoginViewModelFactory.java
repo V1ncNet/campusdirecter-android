@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.campusdirecter.security.model.LoginRepository;
-import com.example.campusdirecter.security.support.LoginDataSource;
+import com.example.campusdirecter.security.support.HttpLoginDataSource;
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.
@@ -18,7 +18,7 @@ public class LoginViewModelFactory implements ViewModelProvider.Factory {
     @SuppressWarnings("unchecked")
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         if (modelClass.isAssignableFrom(LoginViewModel.class)) {
-            return (T) new LoginViewModel(LoginRepository.getInstance(new LoginDataSource()));
+            return (T) new LoginViewModel(LoginRepository.getInstance(new HttpLoginDataSource()));
         } else {
             throw new IllegalArgumentException("Unknown ViewModel class");
         }
