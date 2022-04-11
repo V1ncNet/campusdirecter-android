@@ -48,7 +48,8 @@ public class LoginRepository {
     }
 
     public void login(String username, String password, LoginResultCallback callback) {
-        dataSource.login(username, password, new UserSettingLoginResultCallbackDecorator(callback));
+        String userId = username.replaceFirst("s", "");
+        dataSource.login(userId, password, new UserSettingLoginResultCallbackDecorator(callback));
     }
 
 
