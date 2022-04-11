@@ -42,12 +42,6 @@ public class HttpLoginDataSource implements LoginDataSource {
         URL url = loginUrl();
         JSONObject json = new JSONObject(credentials);
         return new AbstractHttpRequest(url, json) {
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> headers = new HashMap<>(super.getHeaders());
-                headers.put("Content-Type", "application/json");
-                return headers;
-            }
         };
     }
 

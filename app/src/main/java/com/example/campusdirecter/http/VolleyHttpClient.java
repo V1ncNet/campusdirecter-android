@@ -47,7 +47,8 @@ public class VolleyHttpClient implements HttpClient {
 
     @Override
     public void post(HttpRequest request, HttpResponse response) {
-        JsonObjectRequest volleyRequest = request(Method.POST, request, response);
+        HttpRequest jsonCompliantRequest = new JsonContentTypeHttpRequest(request);
+        JsonObjectRequest volleyRequest = request(Method.POST, jsonCompliantRequest, response);
         getRequestQueue().add(volleyRequest);
     }
 
