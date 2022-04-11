@@ -6,4 +6,6 @@ package com.example.campusdirecter.http;
 public interface HttpClient {
 
     void get(HttpRequest request, HttpResponse response);
+
+    void post(HttpRequest request, HttpResponse response);
 }

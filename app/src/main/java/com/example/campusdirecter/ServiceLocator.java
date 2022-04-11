@@ -2,8 +2,13 @@ package com.example.campusdirecter;
 
 import static java.time.format.DateTimeFormatter.ISO_DATE_TIME;
 
+import com.example.campusdirecter.http.AuthenticatedHttpClient;
 import com.example.campusdirecter.http.HttpClient;
 import com.example.campusdirecter.http.VolleyHttpClient;
+import com.example.campusdirecter.security.model.LoggedInUser;
+import com.example.campusdirecter.security.model.LoginDataSource;
+import com.example.campusdirecter.security.model.LoginRepository;
+import com.example.campusdirecter.security.support.HttpLoginDataSource;
 import com.example.campusdirecter.student.model.StudentRepository;
 import com.example.campusdirecter.student.support.HttpStudentRepository;
 import com.example.campusdirecter.timetable.model.TimetableRepository;
@@ -21,6 +26,7 @@ import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Optional;
 
 /**
  * @author Vincent Nadoll (s3003870@ba-sachsen.de)
@@ -61,15 +67,34 @@ public class ServiceLocator {
     }
 
     public StudentRepository getStudentRepository() {
-        HttpClient client = getHttpClient();
+        HttpClient client = getAuthenticatedClient();
         GsonBuilder gsonBuilder = getGsonBuilder();
         return new HttpStudentRepository(client, gsonBuilder);
     }
 
     public TimetableRepository getTimetableRepository() {
-        HttpClient client = getHttpClient();
+        HttpClient client = getAuthenticatedClient();
         GsonBuilder gsonBuilder = getGsonBuilder();
         return new HttpTimetableRepository(client, gsonBuilder);
+    }
+
+    private HttpClient getAuthenticatedClient() {
+        LoginRepository loginRepository = getLoginRepository();
+        HttpClient delegate = getHttpClient();
+        return new AuthenticatedHttpClient(delegate, () -> getCurrentToken(loginRepository));
+    }
+
+    private String getCurrentToken(LoginRepository loginRepository) {
+        return Optional.ofNullable(loginRepository)
+                .map(LoginRepository::getUser)
+                .map(LoggedInUser::getToken)
+                .orElse("");
+    }
+
+    public LoginRepository getLoginRepository() {
+        HttpClient client = getHttpClient();
+        LoginDataSource dataSource = new HttpLoginDataSource(client);
+        return LoginRepository.getInstance(dataSource);
     }
 
 

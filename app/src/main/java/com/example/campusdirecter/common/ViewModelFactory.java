@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.campusdirecter.ServiceLocator;
+import com.example.campusdirecter.security.ui.LoginViewModel;
 import com.example.campusdirecter.timetable.ui.TimetableModel;
 import com.example.campusdirecter.ui.profile.ProfileViewModel;
 
@@ -29,6 +30,7 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
 
         registry.put(TimetableModel.class, serviceLocator -> new TimetableModel(serviceLocator.getTimetableRepository()));
         registry.put(ProfileViewModel.class, serviceLocator -> new ProfileViewModel(serviceLocator.getStudentRepository()));
+        registry.put(LoginViewModel.class, serviceLocator -> new LoginViewModel(serviceLocator.getLoginRepository()));
     }
 
     private final ServiceLocator serviceLocator;
