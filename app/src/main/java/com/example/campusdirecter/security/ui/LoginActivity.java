@@ -92,6 +92,8 @@ public class LoginActivity extends FragmentActivity {
             }
         });
 
+        loginViewModel.login(sharedPreferences.getString(ACCOUNT_TOKEN_KEY, null));
+
         TextWatcher afterTextChangedListener = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

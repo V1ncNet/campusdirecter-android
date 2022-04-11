@@ -27,6 +27,21 @@ public class LoginViewModel extends ViewModel {
         return loginResult;
     }
 
+    public void login(String token) {
+        loginRepository.login(token, new LoginResultCallback() {
+            @Override
+            public void onResponse(Result<LoggedInUser> result) {
+                LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
+                loginResult.setValue(new LoginResult(data));
+            }
+
+            @Override
+            public void onError(Result<Void> result) {
+                loginResult.setValue(null);
+            }
+        });
+    }
+
     public void login(String username, String password) {
         loginRepository.login(username, password, new LoginResultCallback() {
             @Override

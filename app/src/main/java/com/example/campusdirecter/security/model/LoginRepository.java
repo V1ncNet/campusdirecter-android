@@ -52,6 +52,14 @@ public class LoginRepository {
         dataSource.login(userId, password, new UserSettingLoginResultCallbackDecorator(callback));
     }
 
+    public void login(String token, LoginResultCallback callback) {
+        dataSource.login(token, adapt(callback));
+    }
+
+    private TokenResultCallback adapt(LoginResultCallback callback) {
+        return new Adapter(new UserSettingLoginResultCallbackDecorator(callback));
+    }
+
 
     @RequiredArgsConstructor
     private final class UserSettingLoginResultCallbackDecorator implements LoginResultCallback {
@@ -67,6 +75,22 @@ public class LoginRepository {
         @Override
         public void onError(Result<Void> result) {
             delegate.onError(result);
+        }
+    }
+
+    @RequiredArgsConstructor
+    private static final class Adapter implements TokenResultCallback {
+
+        private final LoginResultCallback callback;
+
+        @Override
+        public void onOk(Result<LoggedInUser> result) {
+            callback.onResponse(result);
+        }
+
+        @Override
+        public void onUnauthorized(Result<Void> result) {
+            callback.onError(result);
         }
     }
 }
