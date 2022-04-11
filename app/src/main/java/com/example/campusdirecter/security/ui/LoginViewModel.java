@@ -4,12 +4,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import android.util.Patterns;
-
 import com.example.campusdirecter.R;
+import com.example.campusdirecter.security.model.LoggedInUser;
 import com.example.campusdirecter.security.support.LoginRepository;
 import com.example.campusdirecter.security.support.Result;
-import com.example.campusdirecter.security.model.LoggedInUser;
 
 public class LoginViewModel extends ViewModel {
 
