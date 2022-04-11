@@ -2,6 +2,7 @@ package com.example.campusdirecter;
 
 import static java.time.format.DateTimeFormatter.ISO_DATE_TIME;
 
+import com.example.campusdirecter.http.AuthenticatedHttpClient;
 import com.example.campusdirecter.http.HttpClient;
 import com.example.campusdirecter.http.VolleyHttpClient;
 import com.example.campusdirecter.security.model.LoginDataSource;
@@ -64,15 +65,21 @@ public class ServiceLocator {
     }
 
     public StudentRepository getStudentRepository() {
-        HttpClient client = getHttpClient();
+        HttpClient client = getAuthenticatedClient();
         GsonBuilder gsonBuilder = getGsonBuilder();
         return new HttpStudentRepository(client, gsonBuilder);
     }
 
     public TimetableRepository getTimetableRepository() {
-        HttpClient client = getHttpClient();
+        HttpClient client = getAuthenticatedClient();
         GsonBuilder gsonBuilder = getGsonBuilder();
         return new HttpTimetableRepository(client, gsonBuilder);
+    }
+
+    private HttpClient getAuthenticatedClient() {
+        LoginRepository loginRepository = getLoginRepository();
+        HttpClient delegate = getHttpClient();
+        return new AuthenticatedHttpClient(delegate, loginRepository);
     }
 
     public LoginRepository getLoginRepository() {

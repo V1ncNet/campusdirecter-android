@@ -2,6 +2,7 @@ package com.example.campusdirecter.security.model;
 
 import com.example.campusdirecter.security.support.Result;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -16,6 +17,7 @@ public class LoginRepository {
 
     // If user credentials will be cached in local storage, it is recommended it be encrypted
     // @see https://developer.android.com/training/articles/keystore
+    @Getter
     private LoggedInUser user = null;
 
     // private constructor : singleton access
