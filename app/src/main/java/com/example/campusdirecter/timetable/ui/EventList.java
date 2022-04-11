@@ -15,6 +15,7 @@ import com.example.campusdirecter.R;
 import com.example.campusdirecter.databinding.ViewEventListBinding;
 import com.example.campusdirecter.model.Lecture;
 
+import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.List;
 
@@ -48,6 +49,17 @@ public class EventList extends Adapter<ViewHolder> {
         holder.location.setText(holder.model.getLocation());
 
         counter++;
+
+        if (holder.model.getLectures().isEmpty())
+            return;
+        if (position < events.size() - 1) {
+            Lecture lastLecture = holder.model.getLectures().stream().reduce((prev, next) -> next).orElseThrow(IllegalStateException::new);
+            Lecture nextLecture = events.get(position + 1).getLectures().get(0);
+            long dur = lastLecture.getEndTime().until(nextLecture.getStartTime(), ChronoUnit.MINUTES);
+            holder.eventBreak.setText(dur + " Minuten");
+        } else {
+            holder.eventBreak.setVisibility(View.GONE);
+        }
     }
 
     @NonNull
@@ -70,6 +82,7 @@ public class EventList extends Adapter<ViewHolder> {
         private final AdapterLinearLayout lecture;
         private final TextView lecturer;
         private final TextView location;
+        private final TextView eventBreak;
 
         private Event model;
 
@@ -78,6 +91,8 @@ public class EventList extends Adapter<ViewHolder> {
             lecture = binding.lecture;
             lecturer = binding.lecturer;
             location = binding.location;
+
+            eventBreak = binding.eventBreak;
         }
     }
 }
