@@ -21,6 +21,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.campusdirecter.MainActivity;
+import com.example.campusdirecter.ServiceLocator;
+import com.example.campusdirecter.common.ViewModelFactory;
 import com.example.campusdirecter.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends FragmentActivity {
@@ -35,7 +37,8 @@ public class LoginActivity extends FragmentActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
+        ServiceLocator serviceLocator = ServiceLocator.getInstance();
+        loginViewModel = new ViewModelProvider(this, new ViewModelFactory(serviceLocator))
                 .get(LoginViewModel.class);
 
         final EditText usernameEditText = binding.username;

@@ -2,7 +2,6 @@ package com.example.campusdirecter.security.support;
 
 import androidx.annotation.NonNull;
 
-import com.example.campusdirecter.ServiceLocator;
 import com.example.campusdirecter.http.AbstractHttpRequest;
 import com.example.campusdirecter.http.HttpClient;
 import com.example.campusdirecter.http.HttpResponse;
@@ -23,9 +22,10 @@ import lombok.SneakyThrows;
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.
  */
+@RequiredArgsConstructor
 public class HttpLoginDataSource implements LoginDataSource {
 
-    private final HttpClient client = ServiceLocator.getInstance().getHttpClient();
+    private final HttpClient client;
 
     @Override
     public void login(String username, String password, LoginResultCallback callback) {

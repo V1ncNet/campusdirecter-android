@@ -4,6 +4,9 @@ import static java.time.format.DateTimeFormatter.ISO_DATE_TIME;
 
 import com.example.campusdirecter.http.HttpClient;
 import com.example.campusdirecter.http.VolleyHttpClient;
+import com.example.campusdirecter.security.model.LoginDataSource;
+import com.example.campusdirecter.security.model.LoginRepository;
+import com.example.campusdirecter.security.support.HttpLoginDataSource;
 import com.example.campusdirecter.student.model.StudentRepository;
 import com.example.campusdirecter.student.support.HttpStudentRepository;
 import com.example.campusdirecter.timetable.model.TimetableRepository;
@@ -70,6 +73,12 @@ public class ServiceLocator {
         HttpClient client = getHttpClient();
         GsonBuilder gsonBuilder = getGsonBuilder();
         return new HttpTimetableRepository(client, gsonBuilder);
+    }
+
+    public LoginRepository getLoginRepository() {
+        HttpClient client = getHttpClient();
+        LoginDataSource dataSource = new HttpLoginDataSource(client);
+        return LoginRepository.getInstance(dataSource);
     }
 
 
