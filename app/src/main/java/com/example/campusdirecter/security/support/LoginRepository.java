@@ -1,6 +1,9 @@
 package com.example.campusdirecter.security.support;
 
 import com.example.campusdirecter.security.model.LoggedInUser;
+import com.example.campusdirecter.security.model.LoginResultCallback;
+
+import lombok.RequiredArgsConstructor;
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -43,12 +46,25 @@ public class LoginRepository {
         // @see https://developer.android.com/training/articles/keystore
     }
 
-    public Result<LoggedInUser> login(String username, String password) {
-        // handle login
-        Result<LoggedInUser> result = dataSource.login(username, password);
-        if (result instanceof Result.Success) {
+    public void login(String username, String password, LoginResultCallback callback) {
+        dataSource.login(username, password, new UserSettingLoginResultCallbackDecorator(callback));
+    }
+
+
+    @RequiredArgsConstructor
+    private final class UserSettingLoginResultCallbackDecorator implements LoginResultCallback {
+
+        private final LoginResultCallback delegate;
+
+        @Override
+        public void onResponse(Result<LoggedInUser> result) {
             setLoggedInUser(((Result.Success<LoggedInUser>) result).getData());
+            delegate.onResponse(result);
         }
-        return result;
+
+        @Override
+        public void onError(Result<Void> result) {
+            delegate.onError(result);
+        }
     }
 }
