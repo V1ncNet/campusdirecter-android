@@ -5,6 +5,7 @@ import static java.time.format.DateTimeFormatter.ISO_DATE_TIME;
 import com.example.campusdirecter.http.AuthenticatedHttpClient;
 import com.example.campusdirecter.http.HttpClient;
 import com.example.campusdirecter.http.VolleyHttpClient;
+import com.example.campusdirecter.security.model.LoggedInUser;
 import com.example.campusdirecter.security.model.LoginDataSource;
 import com.example.campusdirecter.security.model.LoginRepository;
 import com.example.campusdirecter.security.support.HttpLoginDataSource;
@@ -25,6 +26,7 @@ import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Optional;
 
 /**
  * @author Vincent Nadoll (s3003870@ba-sachsen.de)
@@ -79,7 +81,14 @@ public class ServiceLocator {
     private HttpClient getAuthenticatedClient() {
         LoginRepository loginRepository = getLoginRepository();
         HttpClient delegate = getHttpClient();
-        return new AuthenticatedHttpClient(delegate, loginRepository);
+        return new AuthenticatedHttpClient(delegate, () -> getCurrentToken(loginRepository));
+    }
+
+    private String getCurrentToken(LoginRepository loginRepository) {
+        return Optional.ofNullable(loginRepository)
+                .map(LoginRepository::getUser)
+                .map(LoggedInUser::getToken)
+                .orElse("");
     }
 
     public LoginRepository getLoginRepository() {

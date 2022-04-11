@@ -2,18 +2,18 @@ package com.example.campusdirecter.http;
 
 import androidx.annotation.NonNull;
 
-import com.example.campusdirecter.security.model.LoginRepository;
+import java.util.function.Supplier;
 
 /**
  * @author Vincent Nadoll (s3003870@ba-sachsen.de)
  */
 public class AuthenticatedHttpClient extends HttpClientDecorator implements HttpClient {
 
-    private final LoginRepository loginRepository;
+    private final Supplier<String> tokenProvider;
 
-    public AuthenticatedHttpClient(HttpClient delegate, LoginRepository loginRepository) {
+    public AuthenticatedHttpClient(HttpClient delegate, Supplier<String> tokenProvider) {
         super(delegate);
-        this.loginRepository = loginRepository;
+        this.tokenProvider = tokenProvider;
     }
 
     @Override
@@ -28,6 +28,6 @@ public class AuthenticatedHttpClient extends HttpClientDecorator implements Http
 
     @NonNull
     private AuthenticatedHttpRequest authenticatedRequest(HttpRequest request) {
-        return new AuthenticatedHttpRequest(request, loginRepository);
+        return new AuthenticatedHttpRequest(request, tokenProvider);
     }
 }

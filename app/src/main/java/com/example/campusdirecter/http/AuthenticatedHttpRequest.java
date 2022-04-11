@@ -1,26 +1,25 @@
 package com.example.campusdirecter.http;
 
-import com.example.campusdirecter.security.model.LoginRepository;
-
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
 /**
  * @author Vincent Nadoll (s3003870@ba-sachsen.de)
  */
 public class AuthenticatedHttpRequest extends HttpRequestDecorator implements HttpRequest {
 
-    private final LoginRepository loginRepository;
+    private final Supplier<String> tokenProvider;
 
-    public AuthenticatedHttpRequest(HttpRequest delegate, LoginRepository loginRepository) {
+    public AuthenticatedHttpRequest(HttpRequest delegate, Supplier<String> tokenProvider) {
         super(delegate);
-        this.loginRepository = loginRepository;
+        this.tokenProvider = tokenProvider;
     }
 
     @Override
     public Map<String, String> getHeaders() {
         Map<String, String> headers = new HashMap<>(super.getHeaders());
-        headers.put("Authorization", "Bearer " + loginRepository.getUser().getToken());
+        headers.put("Authorization", "Bearer " + tokenProvider);
         return headers;
     }
 }
