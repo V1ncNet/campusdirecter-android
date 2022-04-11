@@ -2,6 +2,7 @@ package com.example.campusdirecter.security.ui;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -26,6 +27,9 @@ import com.example.campusdirecter.common.ViewModelFactory;
 import com.example.campusdirecter.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends FragmentActivity {
+
+    private static final String ACCOUNT_PREFERENCES_KEY = "com.example.campusdirecter.account";
+    private static final String ACCOUNT_TOKEN_KEY = "com.example.campusdirecter.account.token";
 
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
@@ -62,6 +66,7 @@ public class LoginActivity extends FragmentActivity {
             }
         });
 
+        SharedPreferences sharedPreferences = getSharedPreferences(ACCOUNT_PREFERENCES_KEY, MODE_PRIVATE);
         loginViewModel.getLoginResult().observe(this, new Observer<LoginResult>() {
             @Override
             public void onChanged(@Nullable LoginResult loginResult) {
@@ -72,6 +77,10 @@ public class LoginActivity extends FragmentActivity {
                 if (loginResult.getError() != null) {
                     showLoginFailed(loginResult.getError());
                     return;
+                } else if (loginResult.getSuccess() != null) {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(ACCOUNT_TOKEN_KEY, loginResult.getSuccess().getToken());
+                    editor.apply();
                 }
                 setResult(Activity.RESULT_OK);
 

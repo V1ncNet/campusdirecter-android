@@ -2,12 +2,14 @@ package com.example.campusdirecter.security.ui;
 
 import androidx.annotation.Nullable;
 
+import com.example.campusdirecter.security.model.LoggedInUser;
+
 /**
  * Authentication result : success (user details) or error message.
  */
 class LoginResult {
     @Nullable
-    private LoggedInUserView success;
+    private LoggedInUser success;
     @Nullable
     private Integer error;
 
@@ -15,12 +17,12 @@ class LoginResult {
         this.error = error;
     }
 
-    LoginResult(@Nullable LoggedInUserView success) {
+    LoginResult(@Nullable LoggedInUser success) {
         this.success = success;
     }
 
     @Nullable
-    LoggedInUserView getSuccess() {
+    LoggedInUser getSuccess() {
         return success;
     }
 

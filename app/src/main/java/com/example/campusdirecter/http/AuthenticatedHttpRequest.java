@@ -19,7 +19,7 @@ public class AuthenticatedHttpRequest extends HttpRequestDecorator implements Ht
     @Override
     public Map<String, String> getHeaders() {
         Map<String, String> headers = new HashMap<>(super.getHeaders());
-        headers.put("Authorization", "Bearer " + tokenProvider);
+        headers.put("Authorization", "Bearer " + tokenProvider.get());
         return headers;
     }
 }
