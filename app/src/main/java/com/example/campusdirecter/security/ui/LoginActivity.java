@@ -68,6 +68,7 @@ public class LoginActivity extends FragmentActivity {
                 loadingProgressBar.setVisibility(View.GONE);
                 if (loginResult.getError() != null) {
                     showLoginFailed(loginResult.getError());
+                    return;
                 }
                 setResult(Activity.RESULT_OK);
 
