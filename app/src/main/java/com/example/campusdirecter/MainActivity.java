@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -13,14 +12,12 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.campusdirecter.common.ViewModelFactory;
 import com.example.campusdirecter.databinding.ActivityMainBinding;
 import com.example.campusdirecter.ui.profile.ProfileFragment;
-import com.example.campusdirecter.ui.profile.ProfileViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private ProfileFragment profileFragment;
-    private ProfileViewModel profileViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
         ViewModelFactory factory  = new ViewModelFactory(ServiceLocator.getInstance());
-        profileViewModel = new ViewModelProvider(this, factory).get(ProfileViewModel.class);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -41,9 +37,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
-        profileViewModel.getStudent().observe(this, student -> {
-            binding.initialsBtn.setText(student.getName().getInitials());
-        });
 
         binding.initialsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
