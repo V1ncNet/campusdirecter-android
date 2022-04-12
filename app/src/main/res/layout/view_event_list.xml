@@ -19,24 +19,18 @@
             android:layout_marginBottom="6dp"
             android:textAlignment="viewStart" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/lecturer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:orientation="vertical">
+            android:textAppearance="?attr/textAppearanceListItem" />
 
-            <TextView
-                android:id="@+id/lecturer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?attr/textAppearanceListItem" />
-
-            <TextView
-                android:id="@+id/location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?attr/textAppearanceListItem" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceListItem" />
 
     </LinearLayout>
 
