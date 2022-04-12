@@ -2,6 +2,7 @@ package com.example.campusdirecter.timetable.ui;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,10 +62,22 @@ public class LectureAdapter extends ArrayAdapter<PositionableLecture> {
         holder.model = getItem(position);
 
         holder.lecture.setText(formatLecture(holder.model.getLecture()));
-        holder.lecture.setBackgroundColor(getColor(holder.view, holder.model.getPosition()));
+        holder.lecture.setBackground(lectureBackground(holder));
 
         holder.lectureBreak.setText(lectureBreakTextBetween(position, position + 1));
         holder.lectureBreak.setVisibility(lectureBreakVisibilityAt(position + 1));
+    }
+
+    @NonNull
+    private GradientDrawable lectureBackground(@NonNull ViewHolder holder) {
+        View parent = holder.view;
+        PositionableLecture model = holder.model;
+
+        GradientDrawable drawable = new GradientDrawable();
+        drawable.setCornerRadius(8f);
+        drawable.setColor(getColor(parent, model.getPosition()));
+
+        return drawable;
     }
 
     private int lectureBreakVisibilityAt(int position) {
