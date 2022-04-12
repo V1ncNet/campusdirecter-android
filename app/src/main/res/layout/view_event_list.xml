@@ -2,35 +2,49 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:background="@drawable/border_event"
-    android:orientation="vertical"
-    android:padding="8dp">
-
-    <com.example.campusdirecter.timetable.ui.AdapterLinearLayout
-        android:id="@+id/lecture"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="6dp"
-        android:textAlignment="viewStart" />
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/border_event"
+        android:padding="8dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/lecturer"
+        <com.example.campusdirecter.timetable.ui.AdapterLinearLayout
+            android:id="@+id/lecture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceListItem" />
+            android:layout_marginBottom="6dp"
+            android:textAlignment="viewStart" />
 
-        <TextView
-            android:id="@+id/location"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceListItem" />
+            android:layout_marginTop="2dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lecturer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceListItem" />
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceListItem" />
+        </LinearLayout>
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/eventBreak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:textSize="18sp" />
 
 </LinearLayout>
