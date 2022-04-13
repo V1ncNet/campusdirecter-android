@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.campusdirecter.ServiceLocator;
 import com.example.campusdirecter.common.ViewModelFactory;
 import com.example.campusdirecter.databinding.FragmentProfileBinding;
+import com.example.campusdirecter.model.Student;
 
 import java.util.Optional;
 
@@ -46,18 +47,14 @@ public class ProfileFragment extends DialogFragment {
         super.onViewCreated(view, savedInstanceState);
         setWidth(98);
 
-        profileViewModel.getStudent().observe(getViewLifecycleOwner(), student -> {
-            binding.name.setText(student.getName().toString());
-            binding.snumber.setText("s" + student.getId());
-            binding.seminarGroup.setText(student.getSeminarGroup());
-        });
+        profileViewModel.getStudent().observe(getViewLifecycleOwner(), this::bind);
+        binding.btnCloseDialog.setOnClickListener(v -> dismiss());
+    }
 
-        binding.btnCloseDialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
+    private void bind(Student student) {
+        binding.name.setText(student.getName().toString());
+        binding.snumber.setText("s" + student.getId());
+        binding.seminarGroup.setText(student.getSeminarGroup());
     }
 
     /**
