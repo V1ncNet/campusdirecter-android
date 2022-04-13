@@ -4,115 +4,114 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="16dp"
     tools:context=".ui.profile.ProfileFragment">
 
-    <TextView
-        android:id="@+id/label_student_name"
-        android:layout_width="172dp"
-        android:layout_height="30dp"
-        android:textSize="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="96dp"
-        android:text="Name:"
-        app:layout_constraintEnd_toStartOf="@+id/studentname_text"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/label_snummer"
-        android:layout_width="166dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
-        android:text="sNummer:"
-        android:textSize="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/snummer_text"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_student_name" />
-
-    <TextView
-        android:id="@+id/snummer_text"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="8dp"
-        android:textSize="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentname_text" />
-
-    <TextView
-        android:id="@+id/studentname_text"
-        android:layout_width="153dp"
-        android:layout_height="30dp"
-        android:textSize="16dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/label_seminargroup"
-        android:layout_width="140dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginBottom="32dp"
-        android:text="Seminargruppe:"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/seminargroup_text"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_snummer"
-        app:layout_constraintVertical_bias="0.04" />
-
-    <TextView
-        android:id="@+id/seminargroup_text"
-        android:layout_width="130dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="32dp"
-        android:textSize="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/snummer_text"
-        app:layout_constraintVertical_bias="0.04" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="148dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="16dp"
-        android:text="Profil "
-        android:textSize="28dp"
-        app:layout_constraintBottom_toTopOf="@+id/label_student_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.593"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageButton
-        android:id="@+id/btnCloseDialog"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:tooltipText="abbrechen"
-        android:foreground="@android:color/transparent"
-        android:layout_marginTop="4dp"
-        android:src="@android:drawable/btn_dialog"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.958"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile_header"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:layout_editor_absoluteX="0dp" />
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/information_grid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnCloseDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/desc_dialog_close"
+            android:foreground="@android:color/transparent"
+            android:src="@android:drawable/btn_dialog"
+            android:tooltipText="@string/tooltip_dialog_close"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_profile"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TableLayout
+        android:id="@+id/information_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_header">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:padding="6dp"
+                android:text="@string/prompt_snumber" />
+
+            <TextView
+                android:id="@+id/snumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:padding="6dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:padding="6dp"
+                android:text="@string/label_name" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:padding="6dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:padding="6dp"
+                android:text="@string/label_seminar_group" />
+
+            <TextView
+                android:id="@+id/seminar_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:padding="6dp" />
+
+        </TableRow>
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

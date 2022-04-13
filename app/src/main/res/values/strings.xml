@@ -13,4 +13,9 @@
     <string name="action_sign_in_short">Anmelden</string>
     <string name="invalid_username">Kein valider Nutzername</string>
     <string name="login_failed">"Anmeldung fehlgeschlagen"</string>
+    <string name="label_name">Name</string>
+    <string name="label_seminar_group">Seminargruppe</string>
+    <string name="label_profile">Profil</string>
+    <string name="desc_dialog_close">Das X zeigt an, dass es den Dialog schließen wird</string>
+    <string name="tooltip_dialog_close">Dialog schließen</string>
 </resources>

@@ -43,9 +43,9 @@ public class ProfileFragment extends DialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         profileViewModel.getStudent().observe(getViewLifecycleOwner(), student -> {
-            binding.studentnameText.setText(student.getName().toString());
-            binding.snummerText.setText("s" + student.getId());
-            binding.seminargroupText.setText(student.getSeminarGroup());
+            binding.name.setText(student.getName().toString());
+            binding.snumber.setText("s" + student.getId());
+            binding.seminarGroup.setText(student.getSeminarGroup());
 
         });
         binding.btnCloseDialog.setOnClickListener(new View.OnClickListener() {
