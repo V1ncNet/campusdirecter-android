@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.campusdirecter.ServiceLocator;
 import com.example.campusdirecter.security.ui.LoginViewModel;
+import com.example.campusdirecter.student.ui.ProfileViewModel;
 import com.example.campusdirecter.timetable.ui.TimetableModel;
-import com.example.campusdirecter.ui.profile.ProfileViewModel;
 
 import java.util.HashMap;
 import java.util.Map;

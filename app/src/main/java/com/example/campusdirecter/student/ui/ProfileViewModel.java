@@ -1,4 +1,4 @@
-package com.example.campusdirecter.ui.profile;
+package com.example.campusdirecter.student.ui;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

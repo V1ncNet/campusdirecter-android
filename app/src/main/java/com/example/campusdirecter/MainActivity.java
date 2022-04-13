@@ -10,7 +10,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.campusdirecter.common.ViewModelFactory;
 import com.example.campusdirecter.databinding.ActivityMainBinding;
-import com.example.campusdirecter.ui.profile.ProfileFragment;
+import com.example.campusdirecter.student.ui.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
