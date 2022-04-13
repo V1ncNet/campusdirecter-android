@@ -20,13 +20,10 @@ import com.example.campusdirecter.databinding.FragmentProfileBinding;
 
 import java.util.Optional;
 
-
 public class ProfileFragment extends DialogFragment {
-
 
     private ProfileViewModel profileViewModel;
     private FragmentProfileBinding binding;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,8 +38,7 @@ public class ProfileFragment extends DialogFragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         binding = FragmentProfileBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        return root;
+        return binding.getRoot();
     }
 
     @Override
@@ -54,8 +50,8 @@ public class ProfileFragment extends DialogFragment {
             binding.name.setText(student.getName().toString());
             binding.snumber.setText("s" + student.getId());
             binding.seminarGroup.setText(student.getSeminarGroup());
-
         });
+
         binding.btnCloseDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

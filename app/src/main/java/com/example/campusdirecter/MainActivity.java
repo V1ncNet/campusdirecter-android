@@ -1,7 +1,6 @@
 package com.example.campusdirecter;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -26,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
-        ViewModelFactory factory  = new ViewModelFactory(ServiceLocator.getInstance());
+        ViewModelFactory factory = new ViewModelFactory(ServiceLocator.getInstance());
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -38,12 +37,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-        binding.initialsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                profileFragment = new ProfileFragment();
-                profileFragment.show(getSupportFragmentManager(),"DialogFragment");
-            }
+        binding.initialsBtn.setOnClickListener(v -> {
+            profileFragment = new ProfileFragment();
+            profileFragment.show(getSupportFragmentManager(), "DialogFragment");
         });
     }
 }
