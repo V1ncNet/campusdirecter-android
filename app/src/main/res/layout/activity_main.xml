@@ -76,6 +76,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/initialsBtn"
+        android:contentDescription="Schaltfläche Profil öffnet Dialogfenster mit persönlichen Daten"
         android:layout_width="39dp"
         android:layout_height="34dp"
         android:layout_marginTop="12dp"
